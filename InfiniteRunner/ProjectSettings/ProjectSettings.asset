@@ -569,7 +569,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
   scriptingDefineSymbols:
-    1: DEBUG_STATEMACHINE
+    1: DEBUG_STATEMACHINE;DEBUG_PLAYER
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

@@ -134,11 +134,15 @@ namespace FSM
         }
 
 
+#region DEBUG
+
         [Conditional("DEBUG_STATEMACHINE")]
         private void _LogState(string message)
         {
             UnityEngine.Debug.Log("[Current State: " + GetCurrentStateName() + "] " + message);
         }
+
+#endregion
 
     }
 }
