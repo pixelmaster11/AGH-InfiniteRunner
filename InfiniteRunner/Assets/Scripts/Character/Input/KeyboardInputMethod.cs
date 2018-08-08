@@ -8,14 +8,14 @@ using UnityEngine;
 /// This class represents the input to be taken from keyboard
 /// </summary>
 
-namespace CharacterInputs
+namespace InputSystem
 {
     public class KeyboardInputMethod : IInputMethod
     {
 
-        private int dir;
-        private bool shouldJump;
-        private bool shouldSlide;
+        private  int dir;
+        private  bool shouldJump;
+        private  bool shouldSlide;
 
         #region Interface methods   
 
@@ -36,29 +36,45 @@ namespace CharacterInputs
         /// </summary>
         public void CollectInputs()
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                dir = -1;
+                 dir = -1;
             }
 
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 dir = 1;
             }
 
+            else
+            {
+                dir = 0;
+            }
 
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+
+            if (Input.GetKey(KeyCode.UpArrow))
             {
 
                 shouldJump = true;
             }
 
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else
+            {
+                shouldJump = false;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
 
                 shouldSlide = true;
             }
 
+            else
+            {
+                shouldSlide = false;
+            }
 
         }
 
@@ -69,6 +85,7 @@ namespace CharacterInputs
         /// <returns></returns>
         public int GetMovementInput()
         {
+           
 
             return dir;
         }
@@ -80,6 +97,7 @@ namespace CharacterInputs
         /// <returns></returns>
         public bool GetJumpInput()
         {
+           
 
             return shouldJump;
 
@@ -92,6 +110,7 @@ namespace CharacterInputs
         /// <returns></returns>
         public bool GetSlideInput()
         {
+           
 
             return shouldSlide;
         }

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 /// 
 
-namespace CharacterInputs
+namespace InputSystem
 {
     public class MobileInputMethod : IInputMethod
     {

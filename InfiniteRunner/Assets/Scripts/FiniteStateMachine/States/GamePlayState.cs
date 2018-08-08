@@ -10,29 +10,30 @@ using UnityEngine;
 
 namespace FSM
 {
-    public class GamePlayState : IState
+    public class GamePlayState : State
     {
 
-        private const string name = "GamePlayState";
+        private const string stateName = "GamePlayState";
 
-        public void Entry()
+        public override void Entry()
         {
-
+            isStateActive = true;
         }
 
-        public void Exit()
+        public override void StateUpdate()
         {
-
+            isStateActive = true;
         }
 
-        public string GetStateName()
+        public override void Exit()
         {
-            return name;
+            isStateActive = false;
         }
 
-        public void Update()
-        {
 
+        public override string GetStateName()
+        {
+            return stateName;
         }
     }
 }

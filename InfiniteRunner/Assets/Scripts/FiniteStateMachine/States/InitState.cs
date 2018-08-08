@@ -8,29 +8,30 @@ using UnityEngine;
 /// </summary>
 namespace FSM
 {
-    public class InitState : IState
+    public class InitState : State
     {
 
-        private const string name = "InitState";
+        private const string stateName = "InitState";
 
-        public void Entry()
+        public override void Entry()
         {
-            
+            isStateActive = true;
         }
 
-        public void Exit()
+        public override void StateUpdate()
         {
-            
+            isStateActive = true;
         }
 
-        public string GetStateName()
+        public override void Exit()
         {
-            return name;
+            isStateActive = false;
         }
 
-        public void Update()
+
+        public override string GetStateName()
         {
-            
+            return stateName;
         }
     }
 }

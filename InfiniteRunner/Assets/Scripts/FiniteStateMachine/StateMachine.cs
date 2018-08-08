@@ -10,18 +10,23 @@ namespace FSM
     {
 
         //Currently running state
-        private IState currentState;
+        private State currentState;
 
         //Previously run state
-        private IState prevState;
+        private State prevState;
 
 
         /// <summary>
         /// Change the current state to a new state
         /// </summary>
         /// <param name="newState">The new state to change to </param>
-        public void ChangeState(IState newState)
+        public void ChangeState(State newState)
         {
+            if(currentState == newState)
+            {
+                return;
+            }
+
             //check null for initialization
             if(currentState != null)
             {
@@ -51,8 +56,8 @@ namespace FSM
             if(currentState != null)
             {
                 //Keep running the current state
-                currentState.Update();
-                _LogState("Update: " + Time.time);
+                currentState.StateUpdate();
+                //_LogState("Update: " + Time.time);
             }
         }
 
@@ -70,7 +75,7 @@ namespace FSM
                 //Run after every xx seconds
                 if(timer >= timeDelay)
                 {
-                    currentState.Update();
+                    currentState.StateUpdate();
                     timer = 0;
                 }
 
@@ -119,16 +124,16 @@ namespace FSM
         /// Get currently running state
         /// </summary>
         /// <returns></returns>
-        public IState GetCurrentState()
+        public State GetCurrentState()
         {
-            return currentState;
+            return  currentState;
         }
 
         /// <summary>
         /// Get previously run state
         /// </summary>
         /// <returns></returns>
-        public IState GetPreviousState()
+        public State GetPreviousState()
         {
             return prevState;
         }
@@ -145,5 +150,20 @@ namespace FSM
 #endregion
 
     }
+
+
+    public abstract class State : MonoBehaviour
+    {
+        public bool isStateActive;
+        public abstract void Entry();
+        public abstract void StateUpdate();
+        public abstract void Exit();
+        public abstract string GetStateName();
+
+        
+
+    }
+
+   
 }
 

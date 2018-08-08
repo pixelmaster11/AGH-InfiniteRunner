@@ -9,28 +9,29 @@ using UnityEngine;
 /// </summary>
 namespace FSM
 {
-    public class MenuState : IState
+    public class MenuState : State
     {
-        private const string name = "MenuState";
+        private const string stateName = "MenuState";
 
-        public void Entry()
+        public override void Entry()
         {
-
+            isStateActive = true;
         }
 
-        public void Exit()
+        public override void StateUpdate()
         {
-
+            isStateActive = true;
         }
 
-        public string GetStateName()
+        public override void Exit()
         {
-            return name;
+            isStateActive = false;
         }
 
-        public void Update()
-        {
 
+        public override string GetStateName()
+        {
+            return stateName;
         }
 
     }

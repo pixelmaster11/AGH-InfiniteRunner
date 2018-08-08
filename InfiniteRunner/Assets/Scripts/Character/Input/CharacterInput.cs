@@ -7,24 +7,23 @@ using UnityEngine;
 /// All input only related stuff should be handled by this class
 /// </summary>
 
-namespace CharacterInputs
+namespace InputSystem
 {
+    //Which input method
+    public enum InputMethod
+    {
+        Keyboard,
+        Mobile,
+        AlternateMobile
+    };
 
-    public class CharacterInput : MonoBehaviour
+    public class CharacterInput 
     {
 
      #region Variables
-
-            //Which input method
-            public enum InputMethods
-            {
-                Keyboard,
-                Mobile
-            };
-            public InputMethods inputMethod;
-
-            //Assign appropriate selected input method
-            private IInputMethod selectedInputMethod;
+                
+      //Assign appropriate selected input method
+      private static IInputMethod selectedInputMethod;                    
 
     #endregion
 
@@ -34,43 +33,79 @@ namespace CharacterInputs
             /// Assign the selected input method to use in game
             /// Keyboard / Mobile 
             /// </summary>
-            private void SetInputMethod()
+            public static void SetInputMethod(InputMethod inputMethod)
             {
+                 
                 switch (inputMethod)
                 {
-                    case InputMethods.Keyboard:
+                    case InputMethod.Keyboard:
                         selectedInputMethod = new KeyboardInputMethod();
                         break;
 
-                    case InputMethods.Mobile:
+                    case InputMethod.Mobile:
                         selectedInputMethod = new MobileInputMethod();
+                        break;
+
+                    case InputMethod.AlternateMobile:
+                        selectedInputMethod = new AlternateMobileInputMethod();
                         break;
                 }
             }
+        
+        
+
+        public static void ResetInputs()
+        {
+            selectedInputMethod.ResetInputs();
+        }
+
+        public static void CollectInputs()
+        {
+            selectedInputMethod.CollectInputs();
+        }
+
+
+         public static bool MoveRightInput()
+         {
+            
+            if(selectedInputMethod.GetMovementInput() == 1)
+            {
+                return true;
+            }
+
+            return false;
+         }
+
+
+        public static bool MoveLeftInput()
+        {
+            if (selectedInputMethod.GetMovementInput() == -1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static int GetMovementInput()
+         {
+            return selectedInputMethod.GetMovementInput();
+
+         }
+
+
+         public static bool GetJumpInput()
+         {
+            return selectedInputMethod.GetJumpInput();
+         }
+
+         public static bool GetSlideInput()
+         {
+            return selectedInputMethod.GetSlideInput();
+         }
 
     #endregion
 
-     #region Monobehaviour Methods
-
-            private void Start()
-            {
-                SetInputMethod();
-            }
-
-            //Gather inputs each frame
-            private void Update()
-            {
-                selectedInputMethod.CollectInputs();
-
-                int dir = selectedInputMethod.GetMovementInput();
-                bool jump = selectedInputMethod.GetJumpInput();
-                bool slide = selectedInputMethod.GetSlideInput();
-
-                _LogInput(dir, jump, slide);
-                selectedInputMethod.ResetInputs();
-            }
-
-    #endregion
 
      #region DEBUG
 
