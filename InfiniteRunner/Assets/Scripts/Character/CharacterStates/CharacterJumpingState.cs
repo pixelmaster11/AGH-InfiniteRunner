@@ -1,38 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InputSystem;
 
 namespace FSM.Character
 {
-    public class CharacterJumpingState : State
+    public class CharacterJumpingState : CharacterBaseState
     {
-        [SerializeField]
-        private CharController controller;
+        
 
-        private const string stateName = "CharacterJumpingState";
+        private const string name = "CharacterJumpingState";
 
-        public override void Entry()
+
+      
+
+        public override void Entry(CharController Owner)
+        {
+            stateName = name;
+            base.Entry(Owner);
+            Owner.anim.Jump(true);
+            Owner.Jump();
+        }
+
+        public override void Update(CharController Owner)
+        {
+            base.Update(Owner);
+
+            if(!Owner.isGrounded)
+            {
+                ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+            }
+
+          
+
+
+
+        }
+
+        public override void EXit(CharController Owner)
         {
             
-            isStateActive = true;
+            base.EXit(Owner);
         }
-
-        public override void StateUpdate()
-        {
-            isStateActive = true;
-        }
-
-        public override void Exit()
-        {
-            isStateActive = false;
-        }
-
-
-        public override string GetStateName()
-        {
-            return stateName;
-        }
-
 
     }
 }

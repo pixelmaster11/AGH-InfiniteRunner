@@ -1,39 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InputSystem;
 
 namespace FSM.Character
 {
-    public class CharacterRunningState : State
+    public class CharacterRunningState : CharacterBaseState
     {
         
 
-        private const string stateName = "CharacterRunningState";
+        private const string name = "CharacterRunningState";
 
-        public override void Entry()
+
+       
+
+        public override void Entry(CharController Owner)
         {
-            isStateActive = true;
+            stateName = name;
+            base.Entry(Owner);
         }
 
-        public override void StateUpdate()
+        public override void Update(CharController Owner)
         {
-            isStateActive = true;
+            base.Update(Owner);    
+
+            if(Owner.isGrounded)
+            {
+                Owner.SnapToGround();
+
+                if(CharacterInput.GetJumpInput())
+                {
+                    ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
+                }
+
+                else if (CharacterInput.GetSlideInput())
+                {
+                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+                }
+            }
 
 
 
         }
 
-        public override void Exit()
+        public override void EXit(CharController Owner)
         {
-            isStateActive = false;
+            base.EXit(Owner);
         }
-
-
-        public override string GetStateName()
-        {
-            return stateName;
-        }
-
 
 
 

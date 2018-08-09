@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private StateMachine fsm = new StateMachine();
 
+
     private void Awake()
     {
         fsm.ChangeState(gameStates[0]);

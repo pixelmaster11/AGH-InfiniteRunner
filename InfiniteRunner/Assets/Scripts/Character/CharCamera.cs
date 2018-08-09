@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharCamera : MonoBehaviour
 {
 
+
     [SerializeField]
     Transform lookAt;
 
@@ -17,9 +18,21 @@ public class CharCamera : MonoBehaviour
     Vector3 velocity = Vector3.forward;
 
     
+    public void SetLookAt(Transform target)
+    {
+        lookAt = target;
+    }
+
+
+   
 
     private void LateUpdate()
     {
+        if(lookAt == null)
+        {
+            lookAt = this.transform;
+        }
+
         Vector3 targetPos = lookAt.position + offset;
         targetPos.y = transform.position.y;
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDamp * Time.deltaTime);

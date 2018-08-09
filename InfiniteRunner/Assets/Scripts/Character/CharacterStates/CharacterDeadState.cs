@@ -4,30 +4,27 @@ using UnityEngine;
 
 namespace FSM.Character
 {
-    public class CharacterDeadState : State
+    public class CharacterDeadState : CharacterBaseState
     {
        
-        private const string stateName = "CharacterDeadState";
+        private const string name = "CharacterDeadState";
 
-        public override void Entry()
+
+
+
+        public override void Entry(CharController Owner)
         {
-            isStateActive = true;
+            stateName = name;
         }
 
-        public override void StateUpdate()
+        public override void Update(CharController Owner)
         {
-            isStateActive = true;
+            base.Update(Owner);
         }
 
-        public override void Exit()
+        public override void EXit(CharController Owner)
         {
-            isStateActive = false;
-        }
 
-
-        public override string GetStateName()
-        {
-            return stateName;
         }
 
     }

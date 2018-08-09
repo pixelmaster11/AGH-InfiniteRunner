@@ -4,31 +4,48 @@ using UnityEngine;
 
 namespace FSM.Character
 {
-    public class CharacterSlidingState : State 
+    public class CharacterSlidingState : CharacterBaseState
     {
        
-        private const string stateName = "CharacterSlidingState";
+        private const string name = "CharacterSlidingState";
 
-        public override void Entry()
+
+
+        public override void Entry(CharController Owner)
         {
-            isStateActive = true;
+            stateName = name;
+            base.Entry(Owner);
+            Owner.anim.Slide(true);
+            Owner.StartCoroutine(SlideDuration(Owner));
         }
 
-        public override void StateUpdate()
+        public override void Update(CharController Owner)
         {
-            isStateActive = true;
+            base.Update(Owner);
         }
 
-        public override void Exit()
+        public override void EXit(CharController Owner)
         {
-            isStateActive = false;
+            Owner.anim.Slide(false);
+            base.EXit(Owner);
+        }
+
+       
+        private IEnumerator SlideDuration(CharController controller)
+        {
+            controller.Slide();
+
+            var wait = new WaitForSeconds(1);
+            yield return wait;
+
+            controller.StopSlide();
+
+            ChangeToState(controller, CharacterBaseState.RUNNING_STATE);
+
+            controller.StopCoroutine(SlideDuration(controller));
         }
 
 
-        public override string GetStateName()
-        {
-            return stateName;
-        }
     }
 
 }

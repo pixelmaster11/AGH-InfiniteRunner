@@ -11,11 +11,13 @@ public class CharController : MonoBehaviour
 
    
    
-    bool isJumping;  
+    public bool isJumping;  
     bool isSliding;
-    bool isGrounded = true; 
+
+    
+    public bool isGrounded = true; 
     bool isFalling;
-    bool isRunning = true;
+    public bool isRunning = true;
 
     internal int currentLane = 1;  
     internal int targetLane = 1;
@@ -33,37 +35,17 @@ public class CharController : MonoBehaviour
     [SerializeField]
     float rayDistance;
 
-    /// <summary>
-    /// 0. Init
-    /// 1. Run
-    /// 2. Jump
-    /// 3. Slide
-    /// 4. Dead
-    /// </summary>
-    [SerializeField]
-    State[] characterStates;
-    
-    StateMachine characterFSM = new StateMachine();
-
+  
     [SerializeField]
     private CharacterController controller;
-  
 
- 
+   
+    public CharAnimator anim;
 
-    private void Awake()
-    {
-        
-        ChangeCharacterState(characterStates[0]);
-    }
 
-    private void Start()
-    {
-       
-        ChangeCharacterState(characterStates[1]);
-       
-    }
 
+   
+    
 
     public void SetMovementData(CharMovementData data)
     {
@@ -78,7 +60,7 @@ public class CharController : MonoBehaviour
     }
 
 
-    private void CalculateFinalMovement()
+    public void CalculateFinalMovement()
     {
 
         //Calculate target position to move
@@ -127,47 +109,54 @@ public class CharController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        CharacterBaseState.currentState = CharacterBaseState.INIT_STATE;
+        CharacterBaseState.currentState.Entry(this);
+        
+    }
+
     private void Update()
     {
-        characterFSM.StateUpdate();
 
-        CalculateFinalMovement();
 
-        if (CharacterInput.MoveRightInput())
-        {
-           
-            ChangeLane(true);
-        }
+        //CalculateFinalMovement();
 
-        if(CharacterInput.MoveLeftInput())
-        {
-            ChangeLane(false);
-        }
+        //if (CharacterInput.MoveRightInput())
+        //{
 
-       
+        //    ChangeLane(true);
+        //}
 
-        if(Grounded())
-        {
-            SnapToGround();
-
-            if(CharacterInput.GetJumpInput())
-            {
-                Jump();
-            }
-
-            else if(CharacterInput.GetSlideInput())
-            {
-                Slide();
-            }
-        }
-
-        else
-        {
-            Fall();
-        }
+        //if(CharacterInput.MoveLeftInput())
+        //{
+        //    ChangeLane(false);
+        //}
 
 
 
+        //if(Grounded())
+        //{
+        //    SnapToGround();
+
+        //    if(CharacterInput.GetJumpInput())
+        //    {
+        //        Jump();
+        //    }
+
+        //    else if(CharacterInput.GetSlideInput())
+        //    {
+        //        Slide();
+        //    }
+        //}
+
+        //else
+        //{
+        //    Fall();
+        //}
+
+
+        CharacterBaseState.currentState.Update(this);
       
 
 
@@ -176,7 +165,7 @@ public class CharController : MonoBehaviour
     }
 
     
-    private bool Grounded()
+    public bool Grounded()
     {
        
 
@@ -189,7 +178,8 @@ public class CharController : MonoBehaviour
         {
             isGrounded = true;
             isJumping = false;
-            isFalling = false;
+            //isFalling = false;
+            //anim.Jump(false);
             return true;
         }
 
@@ -205,21 +195,17 @@ public class CharController : MonoBehaviour
        
     }
 
-    private void SnapToGround()
+    public void SnapToGround()
     {
-        characterFSM.ChangeState(characterStates[1]);
+        
         verticalVelocity = -0.1f;
     }
 
-    private void ChangeCharacterState(State newState)
-    {
-        characterFSM.ChangeState(newState);
-    }
+ 
 
 
 
-
-    private void ChangeLane(bool isRight)
+    public void ChangeLane(bool isRight)
     {
        
 
@@ -237,30 +223,47 @@ public class CharController : MonoBehaviour
   
    
 
-    private void Jump()
+    public void Jump()
     {
 
-        isJumping = true;
-       
-        verticalVelocity = jumpForce;
+        if(!isSliding)
+        {
+            isJumping = true;
 
-        ChangeCharacterState(characterStates[2]);
+            verticalVelocity = jumpForce;
+
+           // anim.Jump(true);
+        }
+       
+       
     }
 
 
-    private void Slide()
+    public void Slide()
     {
         isSliding = true;
         controller.height /= 2;
         controller.center = new Vector3(controller.center.x, controller.center.y / 2, controller.center.z);
-        ChangeCharacterState(characterStates[3]);
+        //anim.Slide(true);
+        //StartCoroutine(IEStopSlide());
     }
 
-    private void StopSlide()
+    private IEnumerator IEStopSlide()
+    {
+        var wait = new WaitForSeconds(1);
+
+        yield return wait;
+
+        StopSlide();
+    }
+
+    public void StopSlide()
     {
         controller.height *= 2;
         controller.center = new Vector3(controller.center.x, controller.center.y * 2, controller.center.z);
         isSliding = false;
+        //anim.Slide(false);
+        //StopCoroutine(IEStopSlide());
     }
 
     private void FastFall()
@@ -268,7 +271,7 @@ public class CharController : MonoBehaviour
         verticalVelocity = -jumpForce;
     }
 
-    private void Fall()
+    public void Fall()
     {
         isFalling = true;
         verticalVelocity -= gravity * Time.deltaTime;

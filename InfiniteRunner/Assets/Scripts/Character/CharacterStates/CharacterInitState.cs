@@ -4,30 +4,40 @@ using UnityEngine;
 
 namespace FSM.Character
 {
-    public class CharacterInitState : State
+    public class CharacterInitState : CharacterBaseState
     {
       
-        private const string stateName = "CharacterInitState";
+        private const string name = "CharacterInitState";
 
-        public override void Entry()
-        {
-            isStateActive = true;
-        }   
 
-        public override void StateUpdate()
+        private float waitTime = 3;
+        private float timer = 0;
+
+        public override void Entry(CharController Owner)
         {
-            isStateActive = true;
+            stateName = name;
+            base.Entry(Owner);
         }
 
-        public override void Exit()
+        public override void Update(CharController Owner)
         {
-            isStateActive = false;
+            if(timer < waitTime)
+            {
+                timer += Time.deltaTime;
+            }
+
+            else
+            {
+                
+                ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
+            }
+           
         }
 
-
-        public override string GetStateName()
+        public override void EXit(CharController Owner)
         {
-            return stateName;
+            timer = 0;
+            base.EXit(Owner);
         }
     }
 }
