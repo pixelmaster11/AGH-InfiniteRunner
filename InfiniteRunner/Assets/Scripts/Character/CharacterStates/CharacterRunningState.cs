@@ -43,6 +43,13 @@ namespace FSM.Character
                 }
             }
 
+            //If falling from top of something while running
+            else
+            {
+                //Change from this state to fall state
+                ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+            }
+
 
 
         }
