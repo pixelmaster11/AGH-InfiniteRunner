@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using InputSystem;
+﻿using InputSystem;
+
+/// <summary>
+/// 1. This state represents the character is in running state or grounded state
+/// 2. You can jump / slide / change lanes (by default) fromt this state
+/// </summary>
 
 namespace FSM.Character
 {
     public class CharacterRunningState : CharacterBaseState
     {
-        
-
-        private const string name = "CharacterRunningState";
-
-
-       
+        //This state name
+        private const string name = "CharacterRunningState";    
 
         public override void Entry(CharController Owner)
         {
@@ -24,17 +22,23 @@ namespace FSM.Character
         {
             base.Update(Owner);    
 
-            if(Owner.isGrounded)
+            //Check for ground
+            if(Owner.IsGrounded)
             {
+                //Snap back to ground while grounded 
                 Owner.SnapToGround();
 
+                //Jump
                 if(CharacterInput.GetJumpInput())
                 {
+                    //Change from this state to jump state
                     ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
                 }
 
+                //Slide
                 else if (CharacterInput.GetSlideInput())
                 {
+                    //Change from this state to slide state
                     ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
                 }
             }

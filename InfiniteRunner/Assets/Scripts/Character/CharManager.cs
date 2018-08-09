@@ -13,9 +13,7 @@ public class CharManager : MonoBehaviour
     //Holds all the playable characters 
     public List<Character> characters;
 
-    public State[] characterStates;
-
-
+   
     public int spawnId;
 
     public CharCamera charCamera;
@@ -23,14 +21,30 @@ public class CharManager : MonoBehaviour
     private Character selectedCharacter;
     private Vector3 spawnPosition = new Vector3(0 , 0.7f, -3.64f);
 
-    CharController controller;
-  
 
+    CharController controller;
+
+ 
+
+   
+
+    private void Start()
+    {
+        SpawnCharacter(spawnId);
+        CharacterInput.SetInputMethod(inputMethod);
+        
+        
+    }
+
+    private void Update()
+    {       
+        UpdateCharFSM();
+    }
 
 
     public void SpawnCharacter(int charID)
     {
-        for(int i = 0; i < characters.Count; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
             characters[i].gameObject.SetActive(false);
         }
@@ -40,27 +54,42 @@ public class CharManager : MonoBehaviour
         selectedCharacter.transform.rotation = Quaternion.identity;
         selectedCharacter.gameObject.SetActive(true);
 
+        SetCharController();
+        SetCharCamera();
+        SetInitialCharFSMState();
+    }
+
+
+    private void SetCharController()
+    {
+
         controller = selectedCharacter.GetComponent<CharController>();
         controller.enabled = true;
         controller.SetMovementData(selectedCharacter.characterMovementData);
-  
+
+    }
+
+
+    private void SetCharCamera()
+    {
         charCamera.SetLookAt(selectedCharacter.transform);
     }
 
 
-
-    private void Start()
+    private void SetInitialCharFSMState()
     {
-        SpawnCharacter(spawnId);
-        CharacterInput.SetInputMethod(inputMethod);
+        CharacterBaseState.currentState = CharacterBaseState.INIT_STATE;
+
+        CharacterBaseState.currentState.Entry(controller);
         
     }
 
-    private void Update()
+
+    private void UpdateCharFSM()
     {
-        CharacterInput.ResetInputs();
-        CharacterInput.CollectInputs();
-    
+        CharacterBaseState.currentState.Update(controller);
     }
+
+
 
 }

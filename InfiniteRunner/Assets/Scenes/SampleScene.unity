@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7664f14de9541c94289f12e52b7aca9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMethod: 2
+  inputMethod: 0
   characters:
   - {fileID: 1264377170}
   - {fileID: 1749128549}

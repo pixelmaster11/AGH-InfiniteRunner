@@ -13,4 +13,5 @@ public class Character : MonoBehaviour
     public CharSaveData characterSaveData;
 
 
+   
 }
