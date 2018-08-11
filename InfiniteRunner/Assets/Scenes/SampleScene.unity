@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7664f14de9541c94289f12e52b7aca9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMethod: 0
+  inputMethod: 3
   characters:
   - {fileID: 1264377170}
   - {fileID: 1749128549}
@@ -935,11 +935,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4828013273394510, guid: 13fa24b6f15b6564286ffa393dea3514, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114013928004562552, guid: 13fa24b6f15b6564286ffa393dea3514,
-        type: 2}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

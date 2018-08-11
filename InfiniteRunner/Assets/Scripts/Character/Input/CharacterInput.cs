@@ -14,10 +14,11 @@ namespace InputSystem
     {
         Keyboard,
         Mobile,
-        AlternateMobile
+        AlternateMobile,
+        Mouse
     };
 
-    public class CharacterInput 
+    public static class CharacterInput 
     {
 
      #region Variables
@@ -49,23 +50,37 @@ namespace InputSystem
                     case InputMethod.AlternateMobile:
                         selectedInputMethod = new AlternateMobileInputMethod();
                         break;
-                }
+
+                    case InputMethod.Mouse:
+                        selectedInputMethod = new MouseInputMethod();
+                        break;
+                }   
             }
         
         
-
+        /// <summary>
+        /// Reset inputs to reset all flags
+        /// </summary>
         public static void ResetInputs()
         {
             selectedInputMethod.ResetInputs();
         }
 
+
+        /// <summary>
+        /// Start collecting input ervery frame
+        /// </summary>
         public static void CollectInputs()
         {
             selectedInputMethod.CollectInputs();
         }
 
 
-         public static bool MoveRightInput()
+        /// <summary>
+        /// Is Swipe right
+        /// </summary>
+        /// <returns>Swipe right?</returns>
+        public static bool MoveRightInput()
          {
             
             if(selectedInputMethod.GetMovementInput() == 1)
@@ -77,6 +92,11 @@ namespace InputSystem
          }
 
 
+        
+        /// <summary>
+        /// Is Swipe left
+        /// </summary>
+        /// <returns>Swipe Left?</returns>
         public static bool MoveLeftInput()
         {
             if (selectedInputMethod.GetMovementInput() == -1)
@@ -87,19 +107,30 @@ namespace InputSystem
             return false;
         }
 
-        public static int GetMovementInput()
-         {
-            return selectedInputMethod.GetMovementInput();
 
-         }
+        //public static int GetMovementInput()
+        // {
+        //    return selectedInputMethod.GetMovementInput();
+
+        // }
 
 
-         public static bool GetJumpInput()
+        
+        /// <summary>
+        /// Swipe Up
+        /// </summary>
+        /// <returns>Swipe up?</returns>
+        public static bool GetJumpInput()
          {
             return selectedInputMethod.GetJumpInput();
          }
 
-         public static bool GetSlideInput()
+        
+        /// <summary>
+        /// Swipe down
+        /// </summary>
+        /// <returns>Swipe down?</returns>
+        public static bool GetSlideInput()
          {
             return selectedInputMethod.GetSlideInput();
          }
@@ -110,7 +141,7 @@ namespace InputSystem
      #region DEBUG
 
             [System.Diagnostics.Conditional("DEBUG_PLAYER")]
-            private void _LogInput(int dir, bool jump, bool slide, string message = "")
+            private static void _LogInput(int dir, bool jump, bool slide, string message = "")
             {
                 UnityEngine.Debug.Log("[D] " + dir + " [J] " + jump + " [S] " + slide + message);
             }

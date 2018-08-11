@@ -46,11 +46,15 @@ namespace FSM.Character
                 if (CharacterInput.GetSlideInput())
                 {
                     Owner.FastFall();
+
+                    //Change from jump state to slide state on fast fall
+                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+
                 }
 
                 //If character reaches max height and starts falling
                 //TODO: LATER CHANGE TO HOW FAR JUMP INSTEAD BASED ON TRACK SPEED
-                if (Owner.CheckForFall())
+                else if (Owner.CheckForFall())
                 {
                     //Change from jump state to fall state
                     ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
@@ -67,7 +71,7 @@ namespace FSM.Character
         /// <param name="Owner"></param>
         public override void EXit(CharController Owner)
         {
-            
+           
             base.EXit(Owner);
         }
 

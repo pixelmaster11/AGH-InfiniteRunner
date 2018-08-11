@@ -2275,12 +2275,16 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287964892476616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67feb9427b78bb04582b0d40335eb041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 1
+  IsJumping: 0
+  IsGrounded: 0
+  IsSliding: 0
+  IsRunning: 0
+  IsFalling: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -2304,11 +2308,11 @@ MonoBehaviour:
     unlockPaidCost: 0
     characterID: 0
   characterMovementData:
-    constMoveSpeed: 5
-    laneChangeSpeed: 11
+    constMoveSpeed: 10
+    laneChangeSpeed: 20
     laneOffset: 6
     turnSpeed: 0.05
-    gravity: 21
+    gravity: 15
     jumpForce: 10
   characterStats:
     lives: 3

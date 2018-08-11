@@ -8,7 +8,7 @@ namespace InputSystem
     public class AlternateMobileInputMethod : IInputMethod
     {
         private const float DEADZONE = 100;
-        private bool tap, swipeRight, swipeLeft, swipeUp, swipeDown;
+        //private bool tap, swipeRight, swipeLeft, swipeUp, swipeDown;
         private Vector2 swipeDelta, startTouch;
 
         private int dir;
@@ -21,16 +21,16 @@ namespace InputSystem
             //Editor
             #if UNITY_EDITOR
 
-            if(Input.GetMouseButtonDown(0))
-            {
-                tap = true;
-                startTouch = Input.mousePosition;
-            }
+            //if(Input.GetMouseButtonDown(0))
+            //{
+            //    tap = true;
+            //    startTouch = Input.mousePosition;
+            //}
 
-            else if(Input.GetMouseButtonUp(0))
-            {
-                startTouch = swipeDelta = Vector2.zero;
-            }
+            //else if(Input.GetMouseButtonUp(0))
+            //{
+            //    startTouch = swipeDelta = Vector2.zero;
+            //}
             #endif
 
             //Mobile
@@ -38,7 +38,7 @@ namespace InputSystem
             {
                 if(Input.touches[0].phase == TouchPhase.Began)
                 {
-                    tap = true;
+                    //tap = true;
                     startTouch = Input.mousePosition;
                 }
 
@@ -61,10 +61,10 @@ namespace InputSystem
 
                 #if UNITY_EDITOR
 
-                if(Input.GetMouseButton(0))
-                {
-                    swipeDelta = (Vector2)Input.mousePosition - startTouch;
-                }
+                //if(Input.GetMouseButton(0))
+                //{
+                //    swipeDelta = (Vector2)Input.mousePosition - startTouch;
+                //}
 
                 #endif
             }
@@ -118,7 +118,7 @@ namespace InputSystem
 
         public void ResetInputs()
         {
-            tap = swipeLeft = swipeRight = swipeDown = swipeUp = false;
+            //tap = swipeLeft = swipeRight = swipeDown = swipeUp = false;
             dir = 0;
             jump = false;
             slide = false;

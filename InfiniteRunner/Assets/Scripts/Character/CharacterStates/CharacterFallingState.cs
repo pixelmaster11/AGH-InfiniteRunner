@@ -1,4 +1,7 @@
-﻿using InputSystem;
+﻿#define Debug
+
+
+using InputSystem;
 
 /// <summary>
 /// 1. This state represents the character falling state. This state is immediately after jump state when the character starts to fall down
@@ -16,6 +19,15 @@ namespace FSM.Character
         {
             stateName = name;
             base.Entry(Owner);
+
+            //FastFall and slide
+            if (CharacterInput.GetSlideInput())
+            {            
+                Owner.FastFall();
+
+                //Change from falling state to running state
+                ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+            }
         }
 
 
@@ -23,24 +35,32 @@ namespace FSM.Character
         {
             base.Update(Owner);
 
+
+          
+
             //Falling from air
             if (!Owner.IsGrounded)
             {
                 //Apply gravity to fall
                 Owner.ApplyGravity();
 
-                //FastFall
+                //FastFall and slide
                 if (CharacterInput.GetSlideInput())
                 {
                     Owner.FastFall();
+
+                    //Change from falling state to running state
+                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
                 }
+
             }
 
             //Reached ground
-            else
-            {
+            else 
+            {                              
                 //Change from falling state to running state
                 ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
+              
             }
 
 
@@ -60,6 +80,16 @@ namespace FSM.Character
         }
 
 
+        #if Debug
+        private void _Log(string message)
+        {
+            UnityEngine.Debug.Log(message);
+        }
+        #endif
     }
+
+
+    
+
 }
 

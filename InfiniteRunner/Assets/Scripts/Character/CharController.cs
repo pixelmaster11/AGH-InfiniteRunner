@@ -43,11 +43,14 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
 
     #region Character Movement Bools
 
-    public bool IsJumping { get; private set; }
-    public bool IsGrounded { get; private set; }
-    public bool IsSliding { get; private set; }
-    public bool IsRunning { get; private set; }
-    public bool IsFalling { get; private set; }
+
+    public bool IsJumping;
+
+
+    public bool IsGrounded;
+    public bool IsSliding;
+    public bool IsRunning;
+    public bool IsFalling;
 
     #endregion
 
@@ -133,8 +136,7 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
         {
             //Character is ground, not jumping or falling
             IsGrounded = true;
-            IsJumping = false;
-            IsFalling = false;
+           
 
         }
 
@@ -152,6 +154,8 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     /// </summary>
     public void SnapToGround()
     {
+        IsJumping = false;
+        IsFalling = false;
         verticalVelocity = -0.1f;
        
     }
@@ -245,8 +249,7 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     /// Apply gravity when character is in air to make the character fall down
     /// </summary>
     public void ApplyGravity()
-    {
-        IsFalling = true;
+    {       
         verticalVelocity -= gravity * Time.deltaTime;
     }
 
@@ -256,6 +259,7 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     /// </summary>
     public void FastFall()
     {
+              
         verticalVelocity = -jumpForce;
     }
 
@@ -268,6 +272,7 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     {
         if (verticalVelocity < -0.2f)
         {
+            IsFalling = true;
             return true;
         }
 

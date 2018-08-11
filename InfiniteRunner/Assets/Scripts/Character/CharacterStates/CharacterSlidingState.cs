@@ -30,6 +30,10 @@ namespace FSM.Character
             stateName = name;
             base.Entry(Owner);
 
+            //Set jump animation false if sliding from fast fall while jump
+            Owner.anim.Jump(false);
+
+            //Start sliding
             Owner.anim.Slide(true);
             Owner.Slide();
         }
