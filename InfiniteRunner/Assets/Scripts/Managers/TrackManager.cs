@@ -7,15 +7,13 @@ public class TrackManager : MonoBehaviour
 {
 
     public float timer = 0;
-    public Vector3 currentExitPoint;
-    public Vector3 entryPoint;
-    public Vector3 pos;
-
-    public List<TrackSegment> activeSegments;
+ 
+   
 
     [SerializeField]
-    TrackSegmentFactory segmentFactory;
+    TrackSegmentSpawner segmentSpawner;
 
+ 
     private void Update()
     {
         if(timer >= 2)
@@ -35,27 +33,7 @@ public class TrackManager : MonoBehaviour
 
     private void SpawnSegment()
     {
-        TrackSegment newSegment = segmentFactory.GetTrackSegment();
-
-        if(activeSegments.Count > 0)
-        {
-            currentExitPoint =  activeSegments[activeSegments.Count - 1].segmentExit.transform.position;
-        }
-
-        else
-        {
-            currentExitPoint = Vector3.zero;
-        }
-        
-        entryPoint = newSegment.segmentEntry.transform.position;
-
-        pos = currentExitPoint + (newSegment.transform.position - entryPoint);
-        newSegment.transform.position = pos;
-
-        newSegment.gameObject.SetActive(true);
-
-        activeSegments.Add(newSegment);
-       
+        segmentSpawner.SpawnTrackSegment();
     }
 }
 	

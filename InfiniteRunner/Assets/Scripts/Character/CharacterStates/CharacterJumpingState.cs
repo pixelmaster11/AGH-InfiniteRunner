@@ -35,20 +35,21 @@ namespace FSM.Character
         public override void Update(CharController Owner)
         {
             base.Update(Owner);
-            
+
             //In air
-            if(!Owner.IsGrounded)
+            if (!Owner.IsGrounded)
             {
                 //apply gravity to make character fall 
                 Owner.ApplyGravity();
 
                 //FastFall when swipe down
-                if (CharacterInput.GetSlideInput())
+                if (CharacterInput.SwipeDownInput())
                 {
                     Owner.FastFall();
 
                     //Change from jump state to slide state on fast fall
                     ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+
 
                 }
 
@@ -61,7 +62,7 @@ namespace FSM.Character
                 }
 
 
-            }         
+            }
 
         }
 

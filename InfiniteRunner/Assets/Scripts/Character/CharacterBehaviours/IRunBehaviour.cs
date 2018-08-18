@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IRunBehaviour
+namespace CharacterBehaviours
 {
+    public interface IRunBehaviour
+    {
 
-    void ConstantMove();
+        void ConstantMove();
 
-    void ChangeLane(bool moveRight);
+        void ChangeLane(bool moveRight);
 
-    
-	
+
+
+    }
 }
+

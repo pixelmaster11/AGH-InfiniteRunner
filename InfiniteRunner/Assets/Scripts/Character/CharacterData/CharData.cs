@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class CharData
 {
@@ -37,4 +38,8 @@ public class CharMovementData
     public float turnSpeed;
     public float gravity;
     public float jumpForce;
+
+  
 }
+
+

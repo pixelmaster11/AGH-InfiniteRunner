@@ -15,8 +15,8 @@ namespace InputSystem
         void CollectInputs();
         void ResetInputs();
         int GetMovementInput();
-        bool GetJumpInput();
-        bool GetSlideInput();
+        bool GetSwipeUpInput();
+        bool GetSwipeDownInput();
 
     }
 }

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IFallBehaviour
+namespace CharacterBehaviours
 {
-    void ApplyGravity();
+    public interface IFallBehaviour
+    {
+        void ApplyGravity();
 
-    void FastFall();
+        void FastFall();
 
-    bool CheckForFall();
-	
+        bool CheckForFall();
+
+    }
 }
+

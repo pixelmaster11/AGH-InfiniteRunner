@@ -29,17 +29,19 @@ namespace FSM.Character
                 Owner.SnapToGround();
 
                 //Jump
-                if(CharacterInput.GetJumpInput())
+                if(CharacterInput.SwipeUpInput())
                 {
                     //Change from this state to jump state
                     ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
+                   
                 }
 
                 //Slide
-                else if (CharacterInput.GetSlideInput())
+                else if (CharacterInput.SwipeDownInput())
                 {
                     //Change from this state to slide state
                     ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+                   
                 }
             }
 

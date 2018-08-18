@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using CharacterBehaviours;
 
 /// <summary>
 /// 1. This class is responsible for all character movement and physics and sets specific character data on initialize
@@ -71,7 +72,12 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     //Animator reference
     public CharAnimator anim;
 
-    #endregion 
+
+
+    #endregion
+
+
+ 
 
     #region Script Specific Methods
 
@@ -92,6 +98,8 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
 
 
     }
+
+
 
     /// <summary>
     /// Rotate character when switching lanes
@@ -229,17 +237,20 @@ public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFal
     }
 
     #endregion
-   
+
     #region JumpBehaviour Methods
 
     /// <summary>
     /// Jump the Character by changing its Y-velocity
     /// </summary>
     public void Jump()
-    {      
-       IsJumping = true;
-       verticalVelocity = jumpForce;                     
+    {
+        IsJumping = true;
+        verticalVelocity = jumpForce;
     }
+
+
+   
 
     #endregion
 

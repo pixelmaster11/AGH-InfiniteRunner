@@ -29,24 +29,24 @@ namespace InputSystem
             /// Assign the selected input method to use in game
             /// Keyboard / Mobile 
             /// </summary>
-            public static void SetInputMethod(InputMethod inputMethod)
+            public static void SetInputMethod(InputType inputMethod)
             {
                  
                 switch (inputMethod)
                 {
-                    case InputMethod.Keyboard:
+                    case InputType.Keyboard:
                         selectedInputMethod = new KeyboardInputMethod();
                         break;
 
-                    case InputMethod.Mobile:
+                    case InputType.Mobile:
                         selectedInputMethod = new MobileInputMethod();
                         break;
 
-                    case InputMethod.AlternateMobile:
+                    case InputType.AlternateMobile:
                         selectedInputMethod = new AlternateMobileInputMethod();
                         break;
 
-                    case InputMethod.Mouse:
+                    case InputType.Mouse:
                         selectedInputMethod = new MouseInputMethod();
                         break;
                 }   
@@ -75,7 +75,7 @@ namespace InputSystem
         /// Is Swipe right
         /// </summary>
         /// <returns>Swipe right?</returns>
-        public static bool MoveRightInput()
+        public static bool SwipeRightInput()
          {
             
             if(selectedInputMethod.GetMovementInput() == 1)
@@ -92,7 +92,7 @@ namespace InputSystem
         /// Is Swipe left
         /// </summary>
         /// <returns>Swipe Left?</returns>
-        public static bool MoveLeftInput()
+        public static bool SwipeLeftInput()
         {
             if (selectedInputMethod.GetMovementInput() == -1)
             {
@@ -103,11 +103,7 @@ namespace InputSystem
         }
 
 
-        //public static int GetMovementInput()
-        // {
-        //    return selectedInputMethod.GetMovementInput();
-
-        // }
+       
 
 
         
@@ -115,9 +111,9 @@ namespace InputSystem
         /// Swipe Up
         /// </summary>
         /// <returns>Swipe up?</returns>
-        public static bool GetJumpInput()
+        public static bool SwipeUpInput()
          {
-            return selectedInputMethod.GetJumpInput();
+            return selectedInputMethod.GetSwipeUpInput();
          }
 
         
@@ -125,9 +121,9 @@ namespace InputSystem
         /// Swipe down
         /// </summary>
         /// <returns>Swipe down?</returns>
-        public static bool GetSlideInput()
+        public static bool SwipeDownInput()
          {
-            return selectedInputMethod.GetSlideInput();
+            return selectedInputMethod.GetSwipeDownInput();
          }
 
     #endregion

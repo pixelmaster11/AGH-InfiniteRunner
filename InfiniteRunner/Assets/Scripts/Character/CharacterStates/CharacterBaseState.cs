@@ -1,4 +1,6 @@
 ﻿using InputSystem;
+using Enums;
+using System.Collections.Generic;
 
 /// <summary>
 /// 1. This is the base class for each character state.
@@ -24,12 +26,15 @@ namespace FSM.Character
         public static readonly ICharacterState<CharController> DEAD_STATE = new CharacterDeadState();
         public static readonly ICharacterState<CharController> INIT_STATE = new CharacterInitState();
 
+
         //Currently and previously run state
         public static ICharacterState<CharController> currentState;
         public static ICharacterState<CharController> previousState;
 
         //Currently running state name
         public string stateName;
+
+
 
 
         /// <summary>
@@ -60,13 +65,13 @@ namespace FSM.Character
             Owner.Grounded();
 
             //Check for right input
-            if (CharacterInput.MoveRightInput())
+            if (CharacterInput.SwipeRightInput())
             {
                 Owner.ChangeLane(true);
             }
 
             //Check for left input
-            else if (CharacterInput.MoveLeftInput())
+            else if (CharacterInput.SwipeLeftInput())
             {
                 Owner.ChangeLane(false);
             }

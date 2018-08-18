@@ -88,10 +88,10 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Returns whether jump input
+        /// Returns whether swiped Up
         /// </summary>
         /// <returns></returns>
-        public bool GetJumpInput()
+        public bool GetSwipeUpInput()
         {
             return jump;
         }
@@ -106,10 +106,10 @@ namespace InputSystem
         }
 
         /// <summary>
-        /// Returns whether slide input
+        /// Returns whether swiped down
         /// </summary>
         /// <returns></returns>
-        public bool GetSlideInput()
+        public bool GetSwipeDownInput()
         {
             return slide;
         }

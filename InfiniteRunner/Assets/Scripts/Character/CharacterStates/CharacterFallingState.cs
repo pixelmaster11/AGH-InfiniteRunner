@@ -21,8 +21,8 @@ namespace FSM.Character
             base.Entry(Owner);
 
             //FastFall and slide
-            if (CharacterInput.GetSlideInput())
-            {            
+            if (CharacterInput.SwipeDownInput())
+            {
                 Owner.FastFall();
 
                 //Change from falling state to running state
@@ -33,10 +33,7 @@ namespace FSM.Character
 
         public override void Update(CharController Owner)
         {
-            base.Update(Owner);
-
-
-          
+            base.Update(Owner);     
 
             //Falling from air
             if (!Owner.IsGrounded)
@@ -45,7 +42,7 @@ namespace FSM.Character
                 Owner.ApplyGravity();
 
                 //FastFall and slide
-                if (CharacterInput.GetSlideInput())
+                if (CharacterInput.SwipeDownInput())
                 {
                     Owner.FastFall();
 

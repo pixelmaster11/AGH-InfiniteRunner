@@ -18,20 +18,7 @@ namespace InputSystem
         public void CollectInputs()
         {
 
-            //Editor
-            #if UNITY_EDITOR
-
-            //if(Input.GetMouseButtonDown(0))
-            //{
-            //    tap = true;
-            //    startTouch = Input.mousePosition;
-            //}
-
-            //else if(Input.GetMouseButtonUp(0))
-            //{
-            //    startTouch = swipeDelta = Vector2.zero;
-            //}
-            #endif
+           
 
             //Mobile
             if(Input.touches.Length != 0)
@@ -59,14 +46,7 @@ namespace InputSystem
                     swipeDelta = Input.touches[0].position - startTouch;
                 }
 
-                #if UNITY_EDITOR
-
-                //if(Input.GetMouseButton(0))
-                //{
-                //    swipeDelta = (Vector2)Input.mousePosition - startTouch;
-                //}
-
-                #endif
+               
             }
 
 
@@ -101,7 +81,7 @@ namespace InputSystem
 
 
 
-        public bool GetJumpInput()
+        public bool GetSwipeUpInput()
         {
             return jump;
         }
@@ -111,7 +91,7 @@ namespace InputSystem
             return dir;
         }
 
-        public bool GetSlideInput()
+        public bool GetSwipeDownInput()
         {
             return slide;
         }

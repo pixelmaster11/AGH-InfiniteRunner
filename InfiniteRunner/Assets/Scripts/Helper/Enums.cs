@@ -6,7 +6,7 @@ namespace Enums
 {
 
     //Which input method
-    public enum InputMethod
+    public enum InputType
     {
         Keyboard,
         Mobile,
@@ -19,6 +19,10 @@ namespace Enums
         Jump,
         Slide,
         LongRun,
-        Ramp
+        Ramp,
+        Patrol,
+        LongBlock
     };
+
+  
 }

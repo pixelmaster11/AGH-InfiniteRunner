@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISlideBehaviour 
+namespace CharacterBehaviours
 {
-    void Slide();
-    void StopSlide();
+    public interface ISlideBehaviour
+    {
+        void Slide();
+        void StopSlide();
+    }
+
 }

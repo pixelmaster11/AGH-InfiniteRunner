@@ -8,7 +8,7 @@ using FSM.Character;
 public class CharManager : MonoBehaviour
 {
 
-    public InputMethod inputMethod;
+    public InputType inputMethod;
 
     //Holds all the playable characters 
     public List<Character> characters;
@@ -32,7 +32,7 @@ public class CharManager : MonoBehaviour
     {
         SpawnCharacter(spawnId);
         CharacterInput.SetInputMethod(inputMethod);
-        
+       
         
     }
 
@@ -53,6 +53,7 @@ public class CharManager : MonoBehaviour
         selectedCharacter.transform.position = spawnPosition;
         selectedCharacter.transform.rotation = Quaternion.identity;
         selectedCharacter.gameObject.SetActive(true);
+        
 
         SetCharController();
         SetCharCamera();
@@ -78,10 +79,10 @@ public class CharManager : MonoBehaviour
 
     private void SetInitialCharFSMState()
     {
-        CharacterBaseState.currentState = CharacterBaseState.INIT_STATE;
-
-        CharacterBaseState.currentState.Entry(controller);
         
+        CharacterBaseState.currentState = CharacterBaseState.INIT_STATE;
+        CharacterBaseState.currentState.Entry(controller);
+
     }
 
 

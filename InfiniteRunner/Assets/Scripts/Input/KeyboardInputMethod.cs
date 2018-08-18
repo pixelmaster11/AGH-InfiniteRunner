@@ -80,7 +80,7 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Return movement direction i.e move left or right
+        /// Return swipe direction i.e left or right
         /// </summary>
         /// <returns></returns>
         public int GetMovementInput()
@@ -92,10 +92,10 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Return whether jump input or not
+        /// Return whether swiped up
         /// </summary>
         /// <returns></returns>
-        public bool GetJumpInput()
+        public bool GetSwipeUpInput()
         {
            
 
@@ -105,10 +105,10 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Return whether slide input or not
+        /// Return whether swiped down
         /// </summary>
         /// <returns></returns>
-        public bool GetSlideInput()
+        public bool GetSwipeDownInput()
         {
            
 

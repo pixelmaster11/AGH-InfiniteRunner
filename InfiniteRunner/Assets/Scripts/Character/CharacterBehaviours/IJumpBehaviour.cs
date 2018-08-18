@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IJumpBehaviour
+namespace CharacterBehaviours
 {
+    public interface IJumpBehaviour
+    {
 
-    void Jump();
+         void Jump();
+    }
 }
+

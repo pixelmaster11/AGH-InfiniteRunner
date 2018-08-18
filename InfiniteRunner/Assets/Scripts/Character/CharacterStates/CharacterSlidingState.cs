@@ -61,7 +61,7 @@ namespace FSM.Character
             // THE TRANSITION IS FROM SLIDE --> RUN --> JUMP
             //THIS MAKES SENSE LOGICIALLY AS YOU GET UP STAND STRAIGHT AND THEN JUMP
             
-            if(CharacterInput.GetJumpInput())
+            if(CharacterInput.SwipeUpInput())
             {
                 ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
             }
