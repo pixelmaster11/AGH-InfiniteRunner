@@ -2,6 +2,7 @@
 
 
 using InputSystem;
+using CharacterSystem.CharacterComponents;
 
 /// <summary>
 /// 1. This state represents the character falling state. This state is immediately after jump state when the character starts to fall down

@@ -1,5 +1,6 @@
 ﻿
 using InputSystem;
+using CharacterSystem.CharacterComponents;
 
 /// <summary>
 /// 1. This state represents the character is in jumping state.

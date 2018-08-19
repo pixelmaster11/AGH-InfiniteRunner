@@ -1,5 +1,5 @@
 ﻿using InputSystem;
-using Enums;
+using CharacterSystem.CharacterComponents;
 using System.Collections.Generic;
 
 /// <summary>

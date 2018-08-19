@@ -2,40 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharCamera : MonoBehaviour
+namespace CharacterSystem.CharacterComponents
 {
-
-
-    [SerializeField]
-    Transform lookAt;
-
-    [SerializeField]
-    Vector3 offset;
-
-    [SerializeField]
-    float smoothDamp;
-
-    Vector3 velocity = Vector3.forward;
-
-    
-    public void SetLookAt(Transform target)
+    public class CharCamera : MonoBehaviour
     {
-        lookAt = target;
-    }
 
 
-   
+        [SerializeField]
+        Transform lookAt;
 
-    private void LateUpdate()
-    {
-        if(lookAt == null)
+        [SerializeField]
+        Vector3 offset;
+
+        [SerializeField]
+        float smoothDamp;
+
+        Vector3 velocity = Vector3.forward;
+
+
+        public void SetLookAt(Transform target)
         {
-            lookAt = this.transform;
+            lookAt = target;
         }
 
-        Vector3 targetPos = lookAt.position + offset;
-        targetPos.y = transform.position.y;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDamp * Time.deltaTime);
-    }
 
+
+
+        private void LateUpdate()
+        {
+            if (lookAt == null)
+            {
+                lookAt = this.transform;
+            }
+
+            Vector3 targetPos = lookAt.position + offset;
+            targetPos.y = transform.position.y;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDamp * Time.deltaTime);
+        }
+
+    }
 }
+

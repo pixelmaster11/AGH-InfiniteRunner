@@ -4,49 +4,46 @@ using UnityEngine;
 
 namespace TrackSystem
 {
-    public class TrackSegmentFactory : MonoBehaviour
+    public class TrackSegmentFactory : IGenericFactory<TrackSegment>
     {
 
-        public TrackSegment[] trackProducts;
-        public List<TrackSegment> trackSegmentPool;
+        private List<TrackSegment> trackSegmentPool = new List<TrackSegment>();
 
-
-        public void ManufactureTrackSegments(int quantity)
+        public void ManufactureProduct(int productQuantity, ref TrackSegment[] products, Transform productParent)
         {
             Random.InitState((int)System.DateTime.Now.Ticks);
 
-            for (int i = 0; i < quantity; i++)
+            for (int i = 0; i < productQuantity; i++)
             {
-                TrackSegment newSegment = (TrackSegment)Instantiate(trackProducts[Random.Range(0 , trackProducts.Length)]);
+                TrackSegment newSegment = (TrackSegment)Object.Instantiate(products[Random.Range(0, products.Length)]);
                 newSegment.gameObject.SetActive(false);
-                newSegment.transform.SetParent(this.transform);
+                newSegment.transform.SetParent(productParent);
                 trackSegmentPool.Add(newSegment);
             }
         }
 
-        public TrackSegment DeliverTrackSegment()
+        public TrackSegment DeliverProduct(ref TrackSegment[] products)
         {
-           TrackSegment segment = null;
-           List<TrackSegment> possibleSegments = trackSegmentPool.FindAll(x => !x.gameObject.activeSelf);
+            TrackSegment segment = null;
+            List<TrackSegment> possibleSegments = trackSegmentPool.FindAll(x => !x.gameObject.activeSelf);
 
-            if(possibleSegments.Count > 0)
+            if (possibleSegments.Count > 0)
             {
                 int rand = Random.Range(0, possibleSegments.Count);
                 segment = possibleSegments[rand];
             }
-          
+
 
             if (segment == null)
             {
-                segment = Instantiate(trackProducts[Random.Range(0 , trackProducts.Length)]);
+                segment = Object.Instantiate(products[Random.Range(0, products.Length)]);
                 trackSegmentPool.Add(segment);
             }
 
-          
+
             return segment;
 
         }
-
     }
 }
 

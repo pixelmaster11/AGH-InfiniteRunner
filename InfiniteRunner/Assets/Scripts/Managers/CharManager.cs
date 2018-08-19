@@ -4,6 +4,8 @@ using UnityEngine;
 using InputSystem;
 using Enums;
 using FSM.Character;
+using CharacterSystem.CharacterData;
+using CharacterSystem.CharacterComponents;
 
 public class CharManager : MonoBehaviour
 {

@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using InputSystem;
+using CharacterSystem.CharacterComponents;
 
 /// <summary>
 /// 1. This state represents sliding state.

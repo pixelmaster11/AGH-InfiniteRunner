@@ -592,14 +592,14 @@ GameObject:
   - component: {fileID: 4563285085729452}
   - component: {fileID: 143471437248873764}
   - component: {fileID: 114768784087046134}
-  - component: {fileID: 114260943816631840}
+  - component: {fileID: 114879367211107482}
   m_Layer: 0
   m_Name: Character_Racoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1670074608981776
 GameObject:
   m_ObjectHideFlags: 1
@@ -1617,7 +1617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1640320827083494}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.7, z: -3.64}
+  m_LocalPosition: {x: 0, y: 1.08, z: -3.64}
   m_LocalScale: {x: 2.000001, y: 2, z: 2.000001}
   m_Children:
   - {fileID: 4345690263135942}
@@ -2036,34 +2036,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114260943816631840
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640320827083494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: babd4d5031eb02f48a022c54ad8eea5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterData:
-    characterName: Racoon
-    unlockCoinCost: 40
-    unlockPaidCost: 0
-    characterID: 1
-  characterMovementData:
-    constMoveSpeed: 10
-    laneChangeSpeed: 20
-    laneOffset: 6
-    turnSpeed: 0.05
-    gravity: 15
-    jumpForce: 10
-  characterStats:
-    lives: 3
-  characterSaveData:
-    topRunScore: 0
-    isUnlocked: 1
 --- !u!114 &114768784087046134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2098,6 +2070,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnim: {fileID: 95195987931386994}
+--- !u!114 &114879367211107482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640320827083494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ce7290fd2a3554a8e4f3566f1ed587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData:
+    characterName: 
+    unlockCoinCost: 0
+    unlockPaidCost: 0
+    characterID: 0
+  characterMovementData:
+    constMoveSpeed: 0
+    laneChangeSpeed: 0
+    laneOffset: 0
+    turnSpeed: 0
+    gravity: 0
+    jumpForce: 0
+  characterStats:
+    lives: 0
+  characterSaveData:
+    topRunScore: 0
+    isUnlocked: 0
 --- !u!137 &137190457747817982
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

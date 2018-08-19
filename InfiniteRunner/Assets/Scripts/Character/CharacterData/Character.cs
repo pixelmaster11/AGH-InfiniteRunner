@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Enums;
-using FSM.Character;
 
-public abstract class Character : MonoBehaviour
+
+namespace CharacterSystem.CharacterData
 {
+    public abstract class Character : MonoBehaviour
+    {
 
-    public CharData characterData;
-    public CharMovementData characterMovementData;
+        public CharData characterData;
+        public CharMovementData characterMovementData;
 
-    public CharStats characterStats;
-    public CharSaveData characterSaveData;
+        public CharStats characterStats;
+        public CharSaveData characterSaveData;
 
-    
-  
 
+    }
 }
+

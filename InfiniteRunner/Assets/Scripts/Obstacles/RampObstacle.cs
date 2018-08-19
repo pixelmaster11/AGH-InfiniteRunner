@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RampObstacle : Obstacle
+namespace ObstacleSystem
 {
-    public override void OnDeSpawn()
+    public class RampObstacle : Obstacle
     {
-        throw new System.NotImplementedException();
-    }
+        public override void OnDeSpawn()
+        {
 
-    public override void OnImpact()
-    {
-        throw new System.NotImplementedException();
-    }
+        }
 
-    public override void OnSpawn()
-    {
-        throw new System.NotImplementedException();
+        public override void OnImpact()
+        {
+
+        }
+
+        public override void OnSpawn()
+        {
+
+        }
     }
 }
+

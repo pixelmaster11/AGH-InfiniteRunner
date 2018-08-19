@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CharacterBehaviours
+namespace CharacterSystem.CharacterBehaviours
 {
     public interface ISlideBehaviour
     {

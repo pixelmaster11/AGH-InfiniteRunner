@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using CharacterSystem.CharacterComponents;
 
 /// <summary>
 /// 1. This state represents the initialization state of character

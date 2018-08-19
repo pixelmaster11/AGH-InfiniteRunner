@@ -152,24 +152,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1378462685522744, guid: 323c32d923fa75b4ba1659a80d2bd0e4, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114668309884333806, guid: 323c32d923fa75b4ba1659a80d2bd0e4,
-        type: 2}
-      propertyPath: randomLaneChance
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 323c32d923fa75b4ba1659a80d2bd0e4, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &103065749 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114668309884333806, guid: 323c32d923fa75b4ba1659a80d2bd0e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 103065748}
-  m_Script: {fileID: 11500000, guid: 3291aebd688d29040acf489e0934ef82, type: 3}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,39 +292,6 @@ Transform:
   m_Father: {fileID: 653878076}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &643386307 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1640320827083494, guid: fdde2157073457d48a541db9fa37e9be,
-    type: 2}
-  m_PrefabInternal: {fileID: 1498858177}
---- !u!114 &643386308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 643386307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ce7290fd2a3554a8e4f3566f1ed587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterData:
-    characterName: 
-    unlockCoinCost: 0
-    unlockPaidCost: 0
-    characterID: 0
-  characterMovementData:
-    constMoveSpeed: 0
-    laneChangeSpeed: 0
-    laneOffset: 0
-    turnSpeed: 0
-    gravity: 0
-    jumpForce: 0
-  characterStats:
-    lives: 0
-  characterSaveData:
-    topRunScore: 0
-    isUnlocked: 0
 --- !u!1 &653878075
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,36 +360,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1345981987571168, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054530964091982, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1987179060587802, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1063571393454428, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114116779151027440, guid: 409416e519c27764ebcb5b31719ad205,
-        type: 2}
-      propertyPath: randomLaneChance
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &778447149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114116779151027440, guid: 409416e519c27764ebcb5b31719ad205,
-    type: 2}
-  m_PrefabInternal: {fileID: 778447147}
-  m_Script: {fileID: 11500000, guid: 3291aebd688d29040acf489e0934ef82, type: 3}
 --- !u!1 &948528091
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,24 +435,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1490272424588242, guid: 7925ced9020e3634aa31584e26fb01b5, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114575403905905220, guid: 7925ced9020e3634aa31584e26fb01b5,
-        type: 2}
-      propertyPath: randomLaneChance
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7925ced9020e3634aa31584e26fb01b5, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &956291737 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114575403905905220, guid: 7925ced9020e3634aa31584e26fb01b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 956291736}
-  m_Script: {fileID: 11500000, guid: 3291aebd688d29040acf489e0934ef82, type: 3}
 --- !u!1 &1037711212
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,39 +625,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1387257672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1287964892476616, guid: 13fa24b6f15b6564286ffa393dea3514,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687230701}
---- !u!114 &1387257673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1387257672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ce7290fd2a3554a8e4f3566f1ed587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterData:
-    characterName: 
-    unlockCoinCost: 0
-    unlockPaidCost: 0
-    characterID: 0
-  characterMovementData:
-    constMoveSpeed: 0
-    laneChangeSpeed: 0
-    laneOffset: 0
-    turnSpeed: 0
-    gravity: 0
-    jumpForce: 0
-  characterStats:
-    lives: 0
-  characterSaveData:
-    topRunScore: 0
-    isUnlocked: 0
 --- !u!1 &1460656568
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +633,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1460656569}
-  - component: {fileID: 1460656570}
   - component: {fileID: 1460656571}
   - component: {fileID: 1460656572}
   m_Layer: 0
@@ -779,22 +655,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1460656570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1460656568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2a44e5358132747bab32a3bb5e49a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackProducts:
-  - {fileID: 778447149}
-  - {fileID: 103065749}
-  - {fileID: 956291737}
-  trackSegmentPool: []
 --- !u!114 &1460656571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,10 +679,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb8573c54e24ce48aa83992ce975663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackSegmentQuantity: 10
+  startSegments: 12
+  maxActiveSegments: 15
+  trackSegmentPoolQuantity: 20
+  spawnBatchSize: 2
+  maxZDistance: 10000
+  trackProducts:
+  - {fileID: 114668309884333806, guid: 323c32d923fa75b4ba1659a80d2bd0e4, type: 2}
+  - {fileID: 114116779151027440, guid: 409416e519c27764ebcb5b31719ad205, type: 2}
+  - {fileID: 114575403905905220, guid: 7925ced9020e3634aa31584e26fb01b5, type: 2}
   activeSegments: []
   trackSegmentRoot: {fileID: 1992439775}
-  segmentFactory: {fileID: 1460656570}
 --- !u!1001 &1498858177
 Prefab:
   m_ObjectHideFlags: 0
@@ -862,12 +729,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1640320827083494, guid: fdde2157073457d48a541db9fa37e9be, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114260943816631840, guid: fdde2157073457d48a541db9fa37e9be, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdde2157073457d48a541db9fa37e9be, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1498858178 stripped
@@ -1040,16 +902,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1357908409964664, guid: 13fa24b6f15b6564286ffa393dea3514, type: 2}
-      propertyPath: m_Name
-      value: Graphics
-      objectReference: {fileID: 0}
-    - target: {fileID: 1287964892476616, guid: 13fa24b6f15b6564286ffa393dea3514, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114326474526867702, guid: 13fa24b6f15b6564286ffa393dea3514, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13fa24b6f15b6564286ffa393dea3514, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1687230702 stripped

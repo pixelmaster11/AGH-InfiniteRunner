@@ -7,8 +7,8 @@ public class TrackManager : MonoBehaviour
 {
 
     public float timer = 0;
- 
-   
+
+    
 
     [SerializeField]
     TrackSegmentSpawner segmentSpawner;
@@ -28,12 +28,17 @@ public class TrackManager : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
     }
 
 
     private void SpawnSegment()
     {
-        segmentSpawner.SpawnTrackSegment();
+      
+      
+      segmentSpawner.SpawnTrackSegment();
+        
+        
     }
 }
 	

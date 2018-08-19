@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1416826797816664
 GameObject:
   m_ObjectHideFlags: 1
@@ -1029,6 +1029,8 @@ MonoBehaviour:
   obstacleRoot: {fileID: 4547739376948240}
   groundMesh: {fileID: 4293337115341014}
   lanesChance: {x: 9, y: 9, z: 1}
+  occupiedLanes: 000000000000000000000000
+  randomLaneChance: 5
 --- !u!114 &114645584836462664
 MonoBehaviour:
   m_ObjectHideFlags: 1

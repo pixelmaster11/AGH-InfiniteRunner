@@ -1,4 +1,5 @@
 ﻿using InputSystem;
+using CharacterSystem.CharacterComponents;
 
 /// <summary>
 /// 1. This state represents the character is in running state or grounded state

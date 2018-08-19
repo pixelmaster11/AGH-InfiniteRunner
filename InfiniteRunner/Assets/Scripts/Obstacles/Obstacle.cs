@@ -4,23 +4,27 @@ using UnityEngine;
 using Enums;
 using TrackSystem;
 
-public abstract class Obstacle : MonoBehaviour
+namespace ObstacleSystem
 {
-    [SerializeField]
-    protected ObstacleType type;
+    public abstract class Obstacle : MonoBehaviour
+    {
+        [SerializeField]
+        protected ObstacleType type;
 
-    [SerializeField]
-    protected int graphicsID;
-    
-    public int obstacleLength;
- 
-    public int onLane;
-  
-    public TrackSegment onSegment;
+        [SerializeField]
+        protected int graphicsID;
+
+        public int obstacleLength;
+
+        public int onLane;
+
+        public TrackSegment onSegment;
 
 
-    public abstract void OnSpawn();
-    public abstract void OnDeSpawn();
+        public abstract void OnSpawn();
+        public abstract void OnDeSpawn();
 
-    public abstract void OnImpact();
+        public abstract void OnImpact();
+    }
+
 }
