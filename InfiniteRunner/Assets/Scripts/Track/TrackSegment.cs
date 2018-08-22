@@ -4,13 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ObstacleSystem;
+using Enums;
 
 namespace TrackSystem
 {
-    public class TrackSegment : MonoBehaviour
+    public abstract class TrackSegment : MonoBehaviour
     {
 
         public int segID;
+        public TrackSegmentType segType;
+
         public Transform segmentEntry;
         public Transform segmentExit;
         public float segmentLength;

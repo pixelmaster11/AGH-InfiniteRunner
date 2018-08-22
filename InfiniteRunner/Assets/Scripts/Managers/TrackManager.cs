@@ -8,37 +8,48 @@ public class TrackManager : MonoBehaviour
 
     public float timer = 0;
 
-    
+    public float spawnDistance = 30;
 
     [SerializeField]
     TrackSegmentSpawner segmentSpawner;
 
- 
+    [SerializeField]
+    CharManager charManager;
+
+
+    private Transform charCameraTransform;
+
+
+    private void Start()
+    {
+        charCameraTransform = charManager.charCamera.transform;
+    }
+
     private void Update()
     {
-        if(timer >= 2)
+        if(segmentSpawner.currentZDistance - charCameraTransform.position.z < spawnDistance)
         {
-            timer = 0;
-
+            // Spawn
             SpawnSegment();
-            //Spawn
+            
         }
 
-        else
-        {
-            timer += Time.deltaTime;
-        }
+       
 
     }
 
 
     private void SpawnSegment()
-    {
-      
-      
+    {          
       segmentSpawner.SpawnTrackSegment();
-        
-        
+      segmentSpawner.DeSpawn();
+      bool recenter = segmentSpawner.Recenter();
+      
+        if(recenter)
+        {
+            charManager.RecenterCharacter(segmentSpawner.currentZDistance);
+        }
+              
     }
 }
 	

@@ -24,5 +24,18 @@ namespace Enums
         LongBlock
     };
 
+    public enum TrackSegmentSpawnType
+    {
+        RandomSegments,
+        SequentialSegments
+    };
+
+    public enum TrackSegmentType
+    {
+        City,
+        Suburb,
+        Garden,
+        Tunnel
+    };
   
 }

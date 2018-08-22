@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ObstacleSystem;
+using Enums;
 
 namespace TrackSystem
 {
+
+    
 
     public class TrackSegmentSpawner : MonoBehaviour
     {
@@ -29,7 +32,7 @@ namespace TrackSystem
         [SerializeField]
         private float maxZDistance;
 
-        private float currentZDistance;
+        public float currentZDistance;
 
         public TrackSegment[] trackProducts;
 
@@ -37,16 +40,22 @@ namespace TrackSystem
 
         [SerializeField]
         private Transform trackSegmentRoot;
-        
-        
-        private TrackSegmentFactory segmentFactory = new TrackSegmentFactory();
 
-       
+        public TrackSegmentSpawnType spawnType;
 
+
+        private TrackSegmentFactory segmentFactory;
+
+
+
+        private void OnEnable()
+        {
+            SetSpawnFactoryType();
+        }
 
         private void Start()
         {
-           
+            
             segmentFactory.ManufactureProduct(trackSegmentPoolQuantity, ref trackProducts, this.transform);
   
             for(int i = 0; i < startSegments; i++)
@@ -55,6 +64,20 @@ namespace TrackSystem
             }
         }
 
+
+        private void SetSpawnFactoryType()
+        {
+            switch(spawnType)
+            {
+                case TrackSegmentSpawnType.RandomSegments:
+                    segmentFactory = new RandomTrackSegmentFactory();
+                    break;
+
+                case TrackSegmentSpawnType.SequentialSegments:
+                    segmentFactory = new SequentialTrackSegmentFactory();
+                    break;
+            }
+        }
 
         public void SpawnTrackSegment(bool useBatch = true)
         {   
@@ -103,17 +126,12 @@ namespace TrackSystem
 
             activeSegments.Add(newSegment);
 
-            ObstacleSpawner.SpawnObstacles(newSegment);
-
-            DeSpawn();
-
-            Recenter();
-
+            ObstacleSpawner.SpawnObstacles(ref newSegment);                 
             
         }
 
 
-        private void DeSpawn()
+        public void DeSpawn()
         {
             if (activeSegments.Count > maxActiveSegments)
             {
@@ -128,7 +146,7 @@ namespace TrackSystem
         }
 
 
-        private void Recenter()
+        public bool Recenter()
         {
             if (currentZDistance > maxZDistance)
             {
@@ -138,7 +156,11 @@ namespace TrackSystem
                 {
                     activeSegments[i].transform.position -= recenter;
                 }
+
+                return true;
             }
+
+            return false;
         }
 
 
@@ -146,6 +168,7 @@ namespace TrackSystem
         public void DeSpawnTrackSegment(int deSpawnIndex)
         {
             TrackSegment despawnSegment = activeSegments[deSpawnIndex];
+            ObstacleSpawner.DeSpawnObstacles(ref despawnSegment);
             despawnSegment.gameObject.SetActive(false);
             despawnSegment.transform.SetParent(this.transform);
 

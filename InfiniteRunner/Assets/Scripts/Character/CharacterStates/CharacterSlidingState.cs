@@ -23,7 +23,8 @@ namespace FSM.Character
         private float timer = 0;
 
         /// <summary>
-        /// Start slide and play animation
+        /// 1. Start slide and play animation
+        /// 
         /// </summary>
         /// <param name="Owner"></param>
         public override void Entry(CharController Owner)
@@ -32,7 +33,7 @@ namespace FSM.Character
             base.Entry(Owner);
 
             //Set jump animation false if sliding from fast fall while jump
-            Owner.anim.Jump(false);
+            //Owner.anim.Jump(false);
 
             //Start sliding
             Owner.anim.Slide(true);
@@ -57,17 +58,20 @@ namespace FSM.Character
                 ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
             }
 
-            //If jump input then jump from slide
-            //NOTE:- IN ANIMATOR CONTROLLER THERE IS NO DIRECT TRANSITION FROM SLIDE -> JUMP
-            // THE TRANSITION IS FROM SLIDE --> RUN --> JUMP
-            //THIS MAKES SENSE LOGICIALLY AS YOU GET UP STAND STRAIGHT AND THEN JUMP
-            
+            //If jump input then jump from slide        
             if(CharacterInput.SwipeUpInput())
             {
                 ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
             }
 
-           
+
+            //Apply gravity so player falls from top if sliding whenver he is not on ground
+            if (!Owner.IsGrounded)
+            {
+                ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+            }
+
+
         }
 
         /// <summary>

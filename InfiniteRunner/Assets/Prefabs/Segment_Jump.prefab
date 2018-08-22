@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33523621085962088}
   - component: {fileID: 23952585033712798}
   - component: {fileID: 65089331913143096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4615806393322996}
-  - component: {fileID: 114668309884333806}
+  - component: {fileID: 114310641848862218}
   m_Layer: 0
   m_Name: Segment_Jump
   m_TagString: Untagged
@@ -304,7 +304,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508380137617562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalPosition: {x: 0, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4177552680662586}
@@ -318,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 1016608207893686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 2, z: 30}
+  m_LocalScale: {x: 15, y: 2, z: 50}
   m_Children: []
   m_Father: {fileID: 4386231105405506}
   m_RootOrder: 0
@@ -343,7 +343,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291388480626950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4177552680662586}
@@ -751,7 +751,7 @@ MonoBehaviour:
   obstacleLength: 0
   onLane: 1
   onSegment: {fileID: 0}
---- !u!114 &114668309884333806
+--- !u!114 &114310641848862218
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,20 +759,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378462685522744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3291aebd688d29040acf489e0934ef82, type: 3}
+  m_Script: {fileID: 11500000, guid: 6af75262bb282c24181ef47d3ca33bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   segID: 0
+  segType: 0
   segmentEntry: {fileID: 4243831925433408}
   segmentExit: {fileID: 4375911164371070}
-  segmentLength: 30
+  segmentLength: 50
   possibleObstacles:
   - {fileID: 114835055693239986}
   - {fileID: 114075124869164158}
   - {fileID: 114888231105714708}
   obstacleRoot: {fileID: 4381908900692102}
   groundMesh: {fileID: 4283124527669370}
-  lanesChance: {x: 0, y: 9, z: 9}
+  lanesChance: {x: 9, y: 9, z: 1}
   occupiedLanes: 000000000000000000000000
   randomLaneChance: 11
 --- !u!114 &114835055693239986

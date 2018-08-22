@@ -148,7 +148,8 @@ namespace CharacterSystem.CharacterComponents
             {
                 //Character is ground, not jumping or falling
                 IsGrounded = true;
-
+                IsJumping = false;
+                IsFalling = false;
 
             }
 
@@ -166,8 +167,7 @@ namespace CharacterSystem.CharacterComponents
         /// </summary>
         public void SnapToGround()
         {
-            IsJumping = false;
-            IsFalling = false;
+          
             verticalVelocity = -0.1f;
 
         }
@@ -290,6 +290,7 @@ namespace CharacterSystem.CharacterComponents
                 IsFalling = true;
                 return true;
             }
+
 
             return false;
         }

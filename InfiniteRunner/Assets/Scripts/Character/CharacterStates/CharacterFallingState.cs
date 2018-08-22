@@ -16,6 +16,11 @@ namespace FSM.Character
         //Falling state
         private const string name = "CharacterFallingState";
 
+        /// <summary>
+        /// 1. Check for fast fall input
+        /// 2. Player now in air so make grounded anim false
+        /// </summary>
+        /// <param name="Owner"></param>
         public override void Entry(CharController Owner)
         {
             stateName = name;
@@ -29,9 +34,17 @@ namespace FSM.Character
                 //Change from falling state to running state
                 ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
             }
+
+
+            Owner.anim.Grounded(false);
         }
 
 
+        /// <summary>
+        /// 1. Check for fast fall input
+        /// 2. Check for ground if falling from top of something
+        /// </summary>
+        /// <param name="Owner"></param>
         public override void Update(CharController Owner)
         {
             base.Update(Owner);     
@@ -67,13 +80,13 @@ namespace FSM.Character
 
         /// <summary>
         /// 1. Falling state exit
-        /// 2. Currently only jump animation, so stop that animation
-        /// 3. If we have different falling animation; play that at entry and stop that here
+        /// 
+        /// 
         /// </summary>
         /// <param name="Owner"></param>
         public override void EXit(CharController Owner)
         {
-            Owner.anim.Jump(false);
+            //Owner.anim.Jump(false);
             base.EXit(Owner);
         }
 

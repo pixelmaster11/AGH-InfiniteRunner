@@ -21,6 +21,7 @@ namespace FSM.Character
         /// <summary>
         /// 1. Entered jump state, so jump
         /// 2. Play jump animaion
+        /// 3. Stop running animation by making grounded anim false, as player now in air
         /// </summary>
         /// <param name="Owner"></param>
         public override void Entry(CharController Owner)
@@ -30,7 +31,9 @@ namespace FSM.Character
 
             Owner.Jump();
             Owner.anim.Jump(true);
+            Owner.anim.Grounded(false);
         }
+
 
 
         public override void Update(CharController Owner)
@@ -62,18 +65,23 @@ namespace FSM.Character
                     ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
                 }
 
-
             }
+
+          
+
+         
 
         }
 
         /// <summary>
-        /// If we had separate jump/ fall animation; stop jump animation here
+        /// Stop jump animation here// Will auto start fall animation from AC
         /// </summary>
         /// <param name="Owner"></param>
         public override void EXit(CharController Owner)
         {
-           
+            
+            Owner.anim.Jump(false);
+            
             base.EXit(Owner);
         }
 

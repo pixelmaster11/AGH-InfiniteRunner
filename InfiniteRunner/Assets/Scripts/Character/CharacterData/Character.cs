@@ -14,6 +14,7 @@ namespace CharacterSystem.CharacterData
         public CharStats characterStats;
         public CharSaveData characterSaveData;
 
+        
 
     }
 }

@@ -36,7 +36,7 @@ namespace CharacterSystem.CharacterComponents
             }
 
             Vector3 targetPos = lookAt.position + offset;
-            targetPos.y = transform.position.y;
+            //targetPos.y = transform.position.y;
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDamp * Time.deltaTime);
         }
 

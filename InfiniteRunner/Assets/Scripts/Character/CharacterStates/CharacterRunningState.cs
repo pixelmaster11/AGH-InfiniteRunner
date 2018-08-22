@@ -17,6 +17,9 @@ namespace FSM.Character
         {
             stateName = name;
             base.Entry(Owner);
+
+            //Grounded, to play run animation
+            Owner.anim.Grounded(true);
         }
 
         public override void Update(CharController Owner)
@@ -59,6 +62,7 @@ namespace FSM.Character
 
         public override void EXit(CharController Owner)
         {
+           
             base.EXit(Owner);
         }
 

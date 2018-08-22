@@ -21,7 +21,7 @@ public class CharManager : MonoBehaviour
     public CharCamera charCamera;
     
     private Character selectedCharacter;
-    private Vector3 spawnPosition = new Vector3(0 , 0.7f, -3.64f);
+    private Vector3 spawnPosition = new Vector3(0 , 1.15f, 3f);
 
 
     CharController controller;
@@ -44,6 +44,15 @@ public class CharManager : MonoBehaviour
     }
 
 
+    public void RecenterCharacter(float recenterBy)
+    {
+        Vector3 recenter = new Vector3(selectedCharacter.transform.position.x, 
+                            selectedCharacter.transform.position.y, selectedCharacter.transform.position.z - recenterBy);
+
+        selectedCharacter.transform.position = recenter;
+    }
+
+
     public void SpawnCharacter(int charID)
     {
         for (int i = 0; i < characters.Count; i++)
@@ -61,6 +70,8 @@ public class CharManager : MonoBehaviour
         SetCharCamera();
         SetInitialCharFSMState();
     }
+
+
 
 
     private void SetCharController()

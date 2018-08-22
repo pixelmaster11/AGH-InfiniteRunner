@@ -20,6 +20,7 @@ namespace CharacterSystem.CharacterComponents
         private int hitHash;
         private int slideHash;
         private int randDeathHash;
+        private int groundHash;
 
         private void SetHashes()
         {
@@ -32,7 +33,7 @@ namespace CharacterSystem.CharacterComponents
             hitHash = Animator.StringToHash("Hit");
             slideHash = Animator.StringToHash("Sliding");
             randDeathHash = Animator.StringToHash("RandomDeath");
-
+            groundHash = Animator.StringToHash("Grounded");
         }
 
 
@@ -49,7 +50,13 @@ namespace CharacterSystem.CharacterComponents
 
         public void Slide(bool start)
         {
+            
             characterAnim.SetBool(slideHash, start);
+        }
+
+        public void Grounded(bool enable)
+        {
+            characterAnim.SetBool(groundHash, enable);
         }
     }
 }

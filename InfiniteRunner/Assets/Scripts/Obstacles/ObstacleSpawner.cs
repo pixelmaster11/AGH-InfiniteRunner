@@ -9,7 +9,7 @@ namespace ObstacleSystem
     {
 
 
-        public static void SpawnObstacles(TrackSegment onSegment)
+        public static void SpawnObstacles(ref TrackSegment onSegment)
         {
             float lane0 = -5;
             float lane1 = 0;
@@ -100,6 +100,15 @@ namespace ObstacleSystem
 
 
                 obstacle.transform.position = finalLanePos;
+            }
+        }
+
+
+        public static void DeSpawnObstacles(ref TrackSegment despawnSegment)
+        {
+            for (int i = 0; i < despawnSegment.possibleObstacles.Length; i++)
+            {
+                despawnSegment.possibleObstacles[i].gameObject.SetActive(false);
             }
         }
 
