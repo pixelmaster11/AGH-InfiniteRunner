@@ -18,13 +18,14 @@ namespace FSM.Character
         private float waitTime = 3;
         private float timer = 0;
 
-        public override void Entry(CharController Owner)
+        //Cache owner controller
+        public override void Entry(BaseController Owner)
         {
             stateName = name;
             base.Entry(Owner);
         }
 
-        public override void Update(CharController Owner)
+        public override void Update()
         {
             //Wait to start running
             if(timer < waitTime)
@@ -35,7 +36,7 @@ namespace FSM.Character
             else
             {
                 //Change from init to run state
-                ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Running);
             }
            
         }
@@ -43,11 +44,10 @@ namespace FSM.Character
         /// <summary>
         /// Reset timer 
         /// </summary>
-        /// <param name="Owner"></param>
-        public override void EXit(CharController Owner)
+        public override void Exit()
         {
             timer = 0;
-            base.EXit(Owner);
+            base.Exit();
         }
     }
 }

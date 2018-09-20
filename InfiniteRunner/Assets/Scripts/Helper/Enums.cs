@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A helper class which stores all enum types
+/// </summary>
 namespace Enums 
 {
 
@@ -14,6 +17,7 @@ namespace Enums
         Mouse
     };
 
+    //Obstacles
     public enum ObstacleType
     {
         Jump,
@@ -24,12 +28,14 @@ namespace Enums
         LongBlock
     };
 
+    //How to spawn track segments
     public enum TrackSegmentSpawnType
     {
         RandomSegments,
         SequentialSegments
     };
 
+    //Track segments
     public enum TrackSegmentType
     {
         City,
@@ -38,4 +44,24 @@ namespace Enums
         Tunnel
     };
   
+
+    //Characters
+    public enum CharacterType
+    {
+        Cat,
+        Racoon
+    };
+
+
+    //Character States 
+    public enum CharacterStateType
+    {
+        Init,
+        Running,
+        Jumping,
+        Sliding,
+        Falling,
+        Dead,
+        Hit
+    };
 }

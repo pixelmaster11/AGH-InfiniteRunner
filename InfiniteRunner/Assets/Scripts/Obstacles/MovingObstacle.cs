@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ObstacleSystem
+namespace Collideable.ObstacleSystem
 {
     public class MovingObstacle : Obstacle, IRunAtPlayerBehaviour
     {
@@ -22,9 +22,9 @@ namespace ObstacleSystem
 
         }
 
-        public void Run()
+        public void RunAtPlayer()
         {
-
+            
         }
     }
 

@@ -10,9 +10,14 @@ namespace InputSystem
         private const float DEADZONE = 100;
         private Vector2 swipeDelta, startTouch;
 
-        private int dir;
-        private bool jump;
-        private bool slide;
+        private int horizontal;
+        private int vertical;
+
+        private bool doubleTap;
+
+        private float timer;
+        private float tapTimer = 0.25f;
+        private int tapCount = 0;
 
         /// <summary>
         /// Collect inputs from mouse swipes
@@ -28,6 +33,21 @@ namespace InputSystem
             {
                 //Begin swiping
                 startTouch = Input.mousePosition;
+
+                tapCount++;
+
+                if (tapCount >= 2 && Time.time - timer <= tapTimer)
+                {
+                    doubleTap = true;
+                    timer = 0;
+                    tapCount = 0;
+                }
+
+                else
+                {
+                    timer = Time.time;
+                }
+
             }
 
             //Left clicked released
@@ -65,16 +85,14 @@ namespace InputSystem
                 //Horizontal Swipe
                 if (Mathf.Abs(x) > Mathf.Abs(y))
                 {
-                    dir = (int)Mathf.Sign(x);
-                    jump = slide = false;
+                    horizontal = (int)Mathf.Sign(x);
+                   
                 }
 
                 //Vertical Swipe
                 else
                 {
-                    jump = y > 0 ? true : false;
-                    slide = y < 0 ? true : false;
-                    dir = 0;
+                    vertical = (int)Mathf.Sign(y);
                 }
 
                 //Reset
@@ -88,30 +106,30 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Returns whether swiped Up
+        /// Returns whether swiped left / right
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeUpInput()
+        public int GetHorizontalSwipeInput()
         {
-            return jump;
+            return horizontal;
         }
 
         /// <summary>
-        /// Return whether move left or right
+        /// Return whether swiped up / down
         /// </summary>
         /// <returns></returns>
-        public int GetMovementInput()
+        public int GetVerticalSwipeInput()
         {
-            return dir;
+            return vertical;
         }
 
         /// <summary>
-        /// Returns whether swiped down
+        /// Returns whether double tapped
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeDownInput()
+        public bool GetDoubleTapInput()
         {
-            return slide;
+            return doubleTap;
         }
 
         /// <summary>
@@ -120,9 +138,10 @@ namespace InputSystem
         public void ResetInputs()
         {
             
-            dir = 0;
-            jump = false;
-            slide = false;
+            horizontal = 0;
+            vertical = 0;
+            
+            doubleTap = false;
         }
     }
 }

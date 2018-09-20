@@ -5,8 +5,9 @@ using Enums;
 
 
 /// <summary>
-/// This class is responsible for handling player inputs and selecting the input method
-/// All input only related stuff should be handled by this class
+/// 1. This class is responsible for handling player inputs and selecting the input method
+/// 2. All input only related stuff should be handled by this class
+/// 3. This class uses strategy pattern to implement cross-platform input
 /// </summary>
 
 namespace InputSystem
@@ -23,8 +24,12 @@ namespace InputSystem
 
     #endregion
 
+
+
      #region Script specific methods
 
+
+    
             /// <summary>
             /// Assign the selected input method to use in game
             /// Keyboard / Mobile 
@@ -78,7 +83,7 @@ namespace InputSystem
         public static bool SwipeRightInput()
          {
             
-            if(selectedInputMethod.GetMovementInput() == 1)
+            if(selectedInputMethod.GetHorizontalSwipeInput() == 1)
             {
                 return true;
             }
@@ -94,7 +99,7 @@ namespace InputSystem
         /// <returns>Swipe Left?</returns>
         public static bool SwipeLeftInput()
         {
-            if (selectedInputMethod.GetMovementInput() == -1)
+            if (selectedInputMethod.GetHorizontalSwipeInput() == -1)
             {
                 return true;
             }
@@ -113,7 +118,12 @@ namespace InputSystem
         /// <returns>Swipe up?</returns>
         public static bool SwipeUpInput()
          {
-            return selectedInputMethod.GetSwipeUpInput();
+            if(selectedInputMethod.GetVerticalSwipeInput() == 1)
+            {
+                return true;
+            }
+
+            return false;
          }
 
         
@@ -123,18 +133,29 @@ namespace InputSystem
         /// <returns>Swipe down?</returns>
         public static bool SwipeDownInput()
          {
-            return selectedInputMethod.GetSwipeDownInput();
-         }
+            if (selectedInputMethod.GetVerticalSwipeInput() == -1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        public static bool DoubleTapInput()
+        {
+            return selectedInputMethod.GetDoubleTapInput();
+        }
 
     #endregion
 
 
      #region DEBUG
 
-            [System.Diagnostics.Conditional("DEBUG_PLAYER")]
-            private static void _LogInput(int dir, bool jump, bool slide, string message = "")
+            [System.Diagnostics.Conditional("DEBUG_INPUT")]
+            private static void _LogInput(int h, int v, string message = "")
             {
-                UnityEngine.Debug.Log("[D] " + dir + " [J] " + jump + " [S] " + slide + message);
+                Utils.DebugUtils.Log("[L-R] " + h + " [U-D] " + v + message);
             }
 
     #endregion

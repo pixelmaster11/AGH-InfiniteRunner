@@ -24,85 +24,23 @@ public class CharManager : MonoBehaviour
     private Vector3 spawnPosition = new Vector3(0 , 1.15f, 3f);
 
 
-    CharController controller;
+    BaseController controller;
 
  
 
    
 
-    private void Start()
-    {
-        SpawnCharacter(spawnId);
-        CharacterInput.SetInputMethod(inputMethod);
-       
-        
-    }
-
-    private void Update()
-    {       
-        UpdateCharFSM();
-    }
 
 
     public void RecenterCharacter(float recenterBy)
     {
-        Vector3 recenter = new Vector3(selectedCharacter.transform.position.x, 
-                            selectedCharacter.transform.position.y, selectedCharacter.transform.position.z - recenterBy);
+        Vector3 recenter = new Vector3(controller.transform.position.x,
+                            controller.transform.position.y, controller.transform.position.z - recenterBy);
 
-        selectedCharacter.transform.position = recenter;
+        controller.transform.position = recenter;
     }
 
 
-    public void SpawnCharacter(int charID)
-    {
-        for (int i = 0; i < characters.Count; i++)
-        {
-            characters[i].gameObject.SetActive(false);
-        }
-
-        selectedCharacter = characters[charID];
-        selectedCharacter.transform.position = spawnPosition;
-        selectedCharacter.transform.rotation = Quaternion.identity;
-        selectedCharacter.gameObject.SetActive(true);
-        
-
-        SetCharController();
-        SetCharCamera();
-        SetInitialCharFSMState();
-    }
-
-
-
-
-    private void SetCharController()
-    {
-
-        controller = selectedCharacter.GetComponent<CharController>();
-        controller.enabled = true;
-        controller.SetMovementData(selectedCharacter.characterMovementData);
-
-    }
-
-
-    private void SetCharCamera()
-    {
-        charCamera.SetLookAt(selectedCharacter.transform);
-    }
-
-
-    private void SetInitialCharFSMState()
-    {
-        
-        CharacterBaseState.currentState = CharacterBaseState.INIT_STATE;
-        CharacterBaseState.currentState.Entry(controller);
-
-    }
-
-
-    private void UpdateCharFSM()
-    {
-        CharacterBaseState.currentState.Update(controller);
-    }
 
 
 

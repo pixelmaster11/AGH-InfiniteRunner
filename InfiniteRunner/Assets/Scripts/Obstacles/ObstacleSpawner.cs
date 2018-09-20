@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrackSystem;
 
-namespace ObstacleSystem
+namespace Collideable.ObstacleSystem
 {
     public static class ObstacleSpawner
     {

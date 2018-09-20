@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Enums;
 
+
+/// <summary>
+/// This class represents a factory which manufactures track segments
+/// </summary>
 namespace TrackSystem
 {
     public abstract class TrackSegmentFactory : IGenericFactory<TrackSegment>
     {
-
+        //Pool of all track segmetns stored
         protected List<TrackSegment> trackSegmentPool = new List<TrackSegment>();
 
+        //Manufacture tracksegments
         public abstract void ManufactureProduct(int productQuantity, ref TrackSegment[] products, Transform productParent);
-      
-        public abstract TrackSegment DeliverProduct(ref TrackSegment[] products);
+
+        //Return a track segment
+        public abstract TrackSegment DeliverProduct(ref TrackSegment[] products, int maxSegmentLevel);
    
 
         

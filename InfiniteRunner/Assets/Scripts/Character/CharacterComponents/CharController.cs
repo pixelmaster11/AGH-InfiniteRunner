@@ -14,8 +14,9 @@ namespace CharacterSystem.CharacterComponents
 {
 
     [RequireComponent(typeof(CharacterController))]
-    public class CharController : MonoBehaviour, IRunBehaviour, IJumpBehaviour, IFallBehaviour, ISlideBehaviour
+    public class CharController : MonoBehaviour
     {
+
 
         #region Character Movement Variables
 

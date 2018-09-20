@@ -16,7 +16,6 @@ namespace FSM.Character
         //Jump state name
         private const string name = "CharacterJumpingState";
 
-       
       
         /// <summary>
         /// 1. Entered jump state, so jump
@@ -24,45 +23,46 @@ namespace FSM.Character
         /// 3. Stop running animation by making grounded anim false, as player now in air
         /// </summary>
         /// <param name="Owner"></param>
-        public override void Entry(CharController Owner)
+        public override void Entry(BaseController Owner)
         {
             stateName = name;
             base.Entry(Owner);
 
-            Owner.Jump();
-            Owner.anim.Jump(true);
-            Owner.anim.Grounded(false);
+            controller.Jump();
+            controller.characterAnimator.Jump(true);
+            controller.characterAnimator.Grounded(false);
+
         }
 
 
 
-        public override void Update(CharController Owner)
+        public override void Update()
         {
-            base.Update(Owner);
+            base.Update();
 
             //In air
-            if (!Owner.IsGrounded)
+            if (!controller.IsGrounded)
             {
                 //apply gravity to make character fall 
-                Owner.ApplyGravity();
+                controller.ApplyGravity();
 
                 //FastFall when swipe down
                 if (CharacterInput.SwipeDownInput())
                 {
-                    Owner.FastFall();
+                    controller.FastFall();
 
                     //Change from jump state to slide state on fast fall
-                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+                    controller.ChangeState(Enums.CharacterStateType.Sliding);
 
 
                 }
 
                 //If character reaches max height and starts falling
                 //TODO: LATER CHANGE TO HOW FAR JUMP INSTEAD BASED ON TRACK SPEED
-                else if (Owner.CheckForFall())
+                else if (controller.CheckForFall())
                 {
                     //Change from jump state to fall state
-                    ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+                    controller.ChangeState(Enums.CharacterStateType.Falling);
                 }
 
             }
@@ -76,13 +76,12 @@ namespace FSM.Character
         /// <summary>
         /// Stop jump animation here// Will auto start fall animation from AC
         /// </summary>
-        /// <param name="Owner"></param>
-        public override void EXit(CharController Owner)
+        public override void Exit()
         {
             
-            Owner.anim.Jump(false);
+            controller.characterAnimator.Jump(false);
             
-            base.EXit(Owner);
+            base.Exit();
         }
 
     }

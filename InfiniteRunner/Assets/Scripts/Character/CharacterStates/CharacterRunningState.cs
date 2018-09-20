@@ -13,30 +13,30 @@ namespace FSM.Character
         //This state name
         private const string name = "CharacterRunningState";    
 
-        public override void Entry(CharController Owner)
+        public override void Entry(BaseController Owner)
         {
             stateName = name;
             base.Entry(Owner);
 
             //Grounded, to play run animation
-            Owner.anim.Grounded(true);
+            Owner.characterAnimator.Grounded(true);
         }
 
-        public override void Update(CharController Owner)
+        public override void Update()
         {
-            base.Update(Owner);    
+            base.Update();    
 
             //Check for ground
-            if(Owner.IsGrounded)
+            if(controller.IsGrounded)
             {
                 //Snap back to ground while grounded 
-                Owner.SnapToGround();
+                //controller.SnapToGround();
 
                 //Jump
                 if(CharacterInput.SwipeUpInput())
                 {
                     //Change from this state to jump state
-                    ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
+                    controller.ChangeState(Enums.CharacterStateType.Jumping);
                    
                 }
 
@@ -44,8 +44,8 @@ namespace FSM.Character
                 else if (CharacterInput.SwipeDownInput())
                 {
                     //Change from this state to slide state
-                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
-                   
+                    controller.ChangeState(Enums.CharacterStateType.Sliding);
+
                 }
             }
 
@@ -53,17 +53,17 @@ namespace FSM.Character
             else
             {
                 //Change from this state to fall state
-                ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Falling);
             }
 
 
 
         }
 
-        public override void EXit(CharController Owner)
+        public override void Exit()
         {
            
-            base.EXit(Owner);
+            base.Exit();
         }
 
 

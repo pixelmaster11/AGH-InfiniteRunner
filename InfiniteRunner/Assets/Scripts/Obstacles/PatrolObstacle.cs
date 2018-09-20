@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ObstacleSystem
+namespace Collideable.ObstacleSystem
 {
     public class PatrolObstacle : Obstacle, IPatrollingBehaviour
     {

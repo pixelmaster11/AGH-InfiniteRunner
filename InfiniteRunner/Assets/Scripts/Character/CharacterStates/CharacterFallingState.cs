@@ -21,7 +21,7 @@ namespace FSM.Character
         /// 2. Player now in air so make grounded anim false
         /// </summary>
         /// <param name="Owner"></param>
-        public override void Entry(CharController Owner)
+        public override void Entry(BaseController Owner)
         {
             stateName = name;
             base.Entry(Owner);
@@ -32,11 +32,13 @@ namespace FSM.Character
                 Owner.FastFall();
 
                 //Change from falling state to running state
-                ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Sliding);
+               
+               
             }
 
 
-            Owner.anim.Grounded(false);
+            controller.characterAnimator.Grounded(false);
         }
 
 
@@ -44,59 +46,49 @@ namespace FSM.Character
         /// 1. Check for fast fall input
         /// 2. Check for ground if falling from top of something
         /// </summary>
-        /// <param name="Owner"></param>
-        public override void Update(CharController Owner)
+        public override void Update()
         {
-            base.Update(Owner);     
+            base.Update();     
 
             //Falling from air
-            if (!Owner.IsGrounded)
+            if (!controller.IsGrounded)
             {
                 //Apply gravity to fall
-                Owner.ApplyGravity();
+                controller.ApplyGravity();
 
                 //FastFall and slide
                 if (CharacterInput.SwipeDownInput())
                 {
-                    Owner.FastFall();
+                    controller.FastFall();
 
                     //Change from falling state to running state
-                    ChangeToState(Owner, CharacterBaseState.SLIDING_STATE);
+                    controller.ChangeState(Enums.CharacterStateType.Sliding);
+
                 }
 
             }
 
             //Reached ground
             else 
-            {                              
+            {
                 //Change from falling state to running state
-                ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
-              
-            }
+                controller.ChangeState(Enums.CharacterStateType.Running);
 
+            }
 
 
         }
 
         /// <summary>
         /// 1. Falling state exit
-        /// 
-        /// 
         /// </summary>
-        /// <param name="Owner"></param>
-        public override void EXit(CharController Owner)
+        public override void Exit()
         {
-            //Owner.anim.Jump(false);
-            base.EXit(Owner);
+            base.Exit();
         }
 
 
-        #if Debug
-        private void _Log(string message)
-        {
-            UnityEngine.Debug.Log(message);
-        }
-        #endif
+     
     }
 
 

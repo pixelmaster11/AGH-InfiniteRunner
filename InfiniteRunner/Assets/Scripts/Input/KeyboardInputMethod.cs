@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// This class represents the input to be taken from keyboard
+/// This class handles the input from keyboard
 /// </summary>
 
 namespace InputSystem
@@ -13,9 +13,14 @@ namespace InputSystem
     public class KeyboardInputMethod : IInputMethod
     {
 
-        private  int dir;
-        private  bool shouldJump;
-        private  bool shouldSlide;
+        private int horizontal;
+        private int vertical;
+
+        private bool doubleTap;
+
+        private float timer;
+        private float tapTimer = 0.25f;
+        private int tapCount = 0;
 
         #region Interface methods   
 
@@ -25,9 +30,10 @@ namespace InputSystem
 
         public void ResetInputs()
         {
-            dir = 0;
-            shouldJump = false;
-            shouldSlide = false;
+            horizontal = 0;
+            vertical = 0;
+
+            doubleTap = false;
         }
 
 
@@ -39,80 +45,93 @@ namespace InputSystem
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                 dir = -1;
+                 horizontal = -1;
             }
 
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                dir = 1;
+                horizontal = 1;
             }
 
             else
             {
-                dir = 0;
+                horizontal = 0;
             }
 
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
 
-                shouldJump = true;
-            }
-
-            else
-            {
-                shouldJump = false;
+                vertical = 1;
             }
 
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
 
-                shouldSlide = true;
+                vertical = -1;
             }
 
             else
             {
-                shouldSlide = false;
+                vertical = 0;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                tapCount++;
+
+                if (tapCount >= 2 && Time.time - timer <= tapTimer)
+                {
+                    doubleTap = true;
+                    timer = 0;
+                    tapCount = 0;
+                }
+
+                else
+                {
+                    timer = Time.time;
+                }
+
+                doubleTap = true;
+                
+                
             }
 
         }
 
 
         /// <summary>
-        /// Return swipe direction i.e left or right
+        /// Returns horizontal swipe direction i.e left / right
         /// </summary>
         /// <returns></returns>
-        public int GetMovementInput()
+        public int GetHorizontalSwipeInput()
         {
-           
-
-            return dir;
+          
+            return horizontal;
         }
 
 
         /// <summary>
-        /// Return whether swiped up
+        /// Return vertical swipe direction i.e  up / down
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeUpInput()
+        public int GetVerticalSwipeInput()
         {
            
 
-            return shouldJump;
+            return vertical;
 
         }
 
 
         /// <summary>
-        /// Return whether swiped down
+        /// Return whether double tapped
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeDownInput()
-        {
-           
-
-            return shouldSlide;
+        public bool GetDoubleTapInput()
+        {           
+            return doubleTap;
         }
 
         #endregion

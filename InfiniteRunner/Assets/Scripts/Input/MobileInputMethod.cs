@@ -13,9 +13,17 @@ namespace InputSystem
     public class MobileInputMethod : IInputMethod
     {
 
-        private bool slide = false;
-        private bool jump = false;
-        private int dir;
+
+        private int horizontal;
+        private int vertical;
+
+
+        private bool doubleTap;
+
+        private float timer;
+        private float tapTimer = 0.25f;
+        private int tapCount = 0;
+
 
         private bool isSwiping = false;
         private Vector2 startingTouchPos;
@@ -28,9 +36,9 @@ namespace InputSystem
         /// </summary>
         public void ResetInputs()
         {
-            dir = 0;
-            jump = false;
-            slide = false;
+            horizontal = 0;
+            vertical = 0;
+            doubleTap = false;
         }
 
         /// <summary>
@@ -53,46 +61,39 @@ namespace InputSystem
                     {
                         if (Mathf.Abs(diff.y) > Mathf.Abs(diff.x))
                         {
-                            if (diff.y < 0)
-                            {
-                                slide = true;
-                                jump = false;
-
-                            }
-                            else
-                            {
-                                jump = true;
-                                slide = false;
-
-                            }
-
-                            dir = 0;
+                            vertical = (int) Mathf.Sign(diff.y);
+             
                         }
                         else
                         {
-                            jump = false;
-                            slide = false;
-
-                            if (diff.x < 0)
-                            {
-                                dir = -1;
-                            }
-                            else
-                            {
-                                dir = 1;
-                            }
+                           horizontal = (int)Mathf.Sign(diff.x);
                         }
 
                         isSwiping = false;
                     }
                 }
 
-                // Input check is AFTER the swip test, that way if TouchPhase.Ended happen a single frame after the Began Phase
-                // a swipe can still be registered (otherwise, m_IsSwiping will be set to false and the test wouldn't happen for that began-Ended pair)
+                // Input check is AFTER the swipe test, that way if TouchPhase.Ended happen a single frame after the Began Phase
+                // a swipe can still be registered (otherwise, isSwiping will be set to false and the test wouldn't happen for that began-Ended pair)
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     startingTouchPos = Input.GetTouch(0).position;
                     isSwiping = true;
+
+                    tapCount++;
+
+                    if (tapCount >= 2 && Time.time - timer <= tapTimer)
+                    {
+                        doubleTap = true;
+                        timer = 0;
+                        tapCount = 0;
+                    }
+
+                    else
+                    {
+                        timer = Time.time;
+                    }
+
                 }
                 else if (Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
@@ -103,34 +104,35 @@ namespace InputSystem
 
 
         /// <summary>
-        /// Returns the direction of swipe
+        /// Returns the direction of swipe left or right
         /// </summary>
         /// <returns></returns>
-        public int GetMovementInput()
+        public int GetHorizontalSwipeInput()
         {
-            return dir;
+            return horizontal;
         }
 
 
         /// <summary>
-        /// Returns whether swiped up
+        /// Returns whether swiped up / down
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeUpInput()
+        public int GetVerticalSwipeInput()
         {
 
-            return jump;
+            return vertical;
+            
 
         }
 
 
         /// <summary>
-        /// Returns whether swiped down 
+        /// Returns whether double tapped or not
         /// </summary>
         /// <returns></returns>
-        public bool GetSwipeDownInput()
+        public bool GetDoubleTapInput()
         {
-            return slide;
+            return doubleTap;
         }
 
         #endregion

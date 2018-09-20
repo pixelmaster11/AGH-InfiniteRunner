@@ -27,23 +27,20 @@ namespace FSM.Character
         /// 
         /// </summary>
         /// <param name="Owner"></param>
-        public override void Entry(CharController Owner)
+        public override void Entry(BaseController Owner)
         {
             stateName = name;
             base.Entry(Owner);
 
-            //Set jump animation false if sliding from fast fall while jump
-            //Owner.anim.Jump(false);
-
             //Start sliding
-            Owner.anim.Slide(true);
-            Owner.Slide();
+            controller.characterAnimator.Slide(true);
+            controller.Slide();
         }
 
 
-        public override void Update(CharController Owner)
+        public override void Update()
         {
-            base.Update(Owner);
+            base.Update();
 
             //Check for how long to slide
             //TOOD: LATER CHANGE TO HOW FAR SLIDE BASED ON TRACK SPEED AND DISTANCE COVERED
@@ -55,20 +52,23 @@ namespace FSM.Character
             //Change back to running state after slide over
             else
             {
-                ChangeToState(Owner, CharacterBaseState.RUNNING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Running);
+              
             }
 
             //If jump input then jump from slide        
             if(CharacterInput.SwipeUpInput())
             {
-                ChangeToState(Owner, CharacterBaseState.JUMPING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Jumping);
             }
 
 
             //Apply gravity so player falls from top if sliding whenver he is not on ground
-            if (!Owner.IsGrounded)
+            //Check for fast falling if we want to continue to slide from fast fall
+            if (!controller.IsGrounded && !controller.IsFastFalling)
             {
-                ChangeToState(Owner, CharacterBaseState.FALLING_STATE);
+                controller.ChangeState(Enums.CharacterStateType.Falling);
+            
             }
 
 
@@ -77,14 +77,13 @@ namespace FSM.Character
         /// <summary>
         /// Exit sliding and stop slide animation and reset timer
         /// </summary>
-        /// <param name="Owner"></param>
-        public override void EXit(CharController Owner)
+        public override void Exit()
         {
-            base.EXit(Owner);
+            base.Exit();
 
             timer = 0;
-            Owner.StopSlide();
-            Owner.anim.Slide(false);
+            controller.StopSlide();
+            controller.characterAnimator.Slide(false);
           
         }
 
